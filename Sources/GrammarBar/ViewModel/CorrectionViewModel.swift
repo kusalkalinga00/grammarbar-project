@@ -83,11 +83,21 @@ public final class CorrectionViewModel {
         if state.isRunning { state = .idle }
     }
 
+    /// True when a clear action has something to remove.
+    public var hasContent: Bool {
+        !input.isEmpty || !output.isEmpty || warning != nil
+    }
+
     public func clear() {
         cancel()
         input = ""
         output = ""
         warning = nil
+        // Without these the header keeps showing the previous run's "412 ms"
+        // over a now-empty panel.
+        attempts = 0
+        firstTokenMilliseconds = nil
+        totalMilliseconds = nil
         state = .idle
     }
 }

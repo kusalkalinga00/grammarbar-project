@@ -6,6 +6,14 @@ struct OutputView: View {
     @Environment(CorrectionViewModel.self) private var model
     @State private var copied = false
 
+    private var placeholder: String {
+        if model.state.isRunning { return "Correcting…" }
+        if !model.input.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return "Press ⌘↩ to correct."
+        }
+        return "Corrected text appears here."
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 8) {
@@ -28,12 +36,22 @@ struct OutputView: View {
             statusLine
 
             ScrollView {
-                Text(model.output.isEmpty ? " " : model.output)
-                    .font(.body)
-                    .textSelection(.enabled)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 12)
-                    .padding(.bottom, 10)
+                Group {
+                    if model.output.isEmpty {
+                        // An empty box reads as a rendering bug. Saying what will
+                        // appear here makes the same space look intentional.
+                        Text(placeholder)
+                            .foregroundStyle(.tertiary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        Text(model.output)
+                            .textSelection(.enabled)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                .font(.body)
+                .padding(.horizontal, 12)
+                .padding(.bottom, 10)
             }
             .frame(maxHeight: .infinity)
         }

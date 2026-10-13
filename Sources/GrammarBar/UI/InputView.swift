@@ -10,11 +10,13 @@ struct InputView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 6) {
             TextEditor(text: Binding(get: { model.input }, set: { model.input = $0 }))
                 .font(.body)
                 .scrollContentBackground(.hidden)
-                .frame(minHeight: 96, maxHeight: 140)
+                // Trimmed from 96/140 to buy back height for the panel without
+                // starving the editor — still ~3 lines at rest.
+                .frame(minHeight: 72, maxHeight: 110)
                 .padding(6)
                 .background(.quaternary.opacity(0.25), in: RoundedRectangle(cornerRadius: 6))
 

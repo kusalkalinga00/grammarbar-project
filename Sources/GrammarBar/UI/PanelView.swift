@@ -8,6 +8,22 @@ struct PanelView: View {
     @Environment(\.openURL) private var openURL
     @State private var showSettings = false
 
+    // Panel sizing.
+    //
+    // Fixed (non-scrolling) space is roughly:
+    //   header                       ~38   (picker + vertical padding)
+    //   output header + paddings     ~38
+    //   input block                  ~128  (padding 24 + editor 72 + row 32)
+    //   two dividers                 ~2
+    //                                ----
+    //                                ~206
+    //
+    // At the old 560 that left ~350pt of mostly-empty output area, which read as
+    // dead space. 420 leaves ~215pt — enough for a paragraph without looking
+    // hollow, and the empty state now says what will appear there.
+    private static let panelWidth: CGFloat = 420
+    private static let panelHeight: CGFloat = 420
+
     var body: some View {
         VStack(spacing: 0) {
             header
@@ -22,7 +38,7 @@ struct PanelView: View {
             Divider()
             InputView()
         }
-        .frame(width: 420, height: 560)
+        .frame(width: Self.panelWidth, height: Self.panelHeight)
         .sheet(isPresented: $showSettings) {
             SettingsView()
                 .environment(registry)
@@ -56,6 +72,18 @@ struct PanelView: View {
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
+
+            // Clears both fields. Enabled whenever there is anything to remove,
+            // including mid-run — the run is cancelled and the fields emptied.
+            Button {
+                model.clear()
+            } label: {
+                Image(systemName: "trash")
+            }
+            .buttonStyle(.borderless)
+            .disabled(!model.hasContent)
+            .keyboardShortcut("k", modifiers: .command)
+            .help("Clear input and output (⌘K)")
 
             Button {
                 showSettings = true
