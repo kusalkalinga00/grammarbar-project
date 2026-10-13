@@ -1,0 +1,3 @@
+# 27 MB of refetchable corpora — only needed to rebuild golden.jsonl (see README.md).
+# The eval itself reads golden.jsonl and writes results/; neither needs data/.
+data/

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+    GrammarDownloader.xpc — plan v2 §6.
+
+    App Sandbox ON, network client ON, user-selected files OFF (it must never be
+    able to read anything the user picked; it only writes into its own container).
+
+    This is the only process in the product with network access, and it never
+    receives user text: `Sources/Shared/GrammarDownloading.swift` has no field for
+    text, only model ids, URLs, sizes and digests.
+
+    OPEN ITEM — unimplemented and unverified: the sandboxed main app cannot read
+    the XPC service's private container, so the directory handed back in
+    `GDDownloadReply.workingDirectoryPath` must live in a container both processes
+    can see, i.e. an app-group container. That needs:
+
+        <key>com.apple.security.application-groups</key>
+        <array><string>group.&lt;TEAMID&gt;.GrammarBar</string></array>
+
+    on BOTH this target and GrammarBar.app. It is not written here because plan v2
+    §6 specifies a narrower entitlement set and adding entitlements silently would
+    be worse than flagging the gap. Decide it when project.yml exists.
+
+    NOT VERIFIED: no .xcodeproj exists yet; nothing has loaded or signed this file.
+-->
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<key>com.apple.security.network.client</key>
+	<true/>
+</dict>
+</plist>

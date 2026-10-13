@@ -1,0 +1,48 @@
+# ============================================================================
+# GrammarBar .gitignore
+#
+# Two rules drive this file:
+#   1. Nothing generated or downloaded is committed.
+#   2. Nothing derived from third-party corpora is committed. See Eval/LICENSES.md.
+# ============================================================================
+
+# --- SwiftPM ----------------------------------------------------------------
+.build/
+.swiftpm/
+
+# NOTE: Package.resolved is deliberately NOT ignored. Pinning dependency
+# versions is a stated project requirement (plan v2 section 4.4), so it must be
+# committed once external dependencies exist.
+
+# --- Xcode / XcodeGen ------------------------------------------------------
+# GrammarBar.xcodeproj is GENERATED from project.yml. Never hand-edit it and
+# never commit it - edit project.yml and re-run `xcodegen generate`.
+GrammarBar.xcodeproj/
+.build-xcode/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+
+# --- Benchmark: environment and downloaded weights -------------------------
+Bench/.venv/
+Bench/models/
+**/__pycache__/
+*.pyc
+*.log
+
+# --- Eval: third-party data and everything derived from it -----------------
+# BEA-2019 / LOCNESS is non-commercial research/education only, with no
+# redistribution to third parties. JFLEG ships no LICENSE file at all.
+# So the raw corpora AND the artefacts produced from them stay local.
+Eval/data/
+Eval/golden.jsonl
+Eval/results/*.json
+Eval/results/*.txt
+Eval/RESULTS.full-corpus.md
+
+# What IS committed from Eval/: the harness, the build script, provenance and
+# licence docs, RESULTS.md, and golden.first-party.jsonl - the recon+authored
+# subset, which contains no third-party text.
+
+# --- macOS -----------------------------------------------------------------
+.DS_Store

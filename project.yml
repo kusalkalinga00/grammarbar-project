@@ -1,0 +1,77 @@
+# XcodeGen source of truth for everything SwiftPM cannot express:
+# LSUIElement, entitlements, embedded frameworks, and the XPC service bundle.
+#
+#   brew install xcodegen && cd <repo> && xcodegen generate
+#
+# SwiftPM stays the edit/test loop (swift build / swift test); this project is
+# for bundling, signing and shipping. Both read the same Sources/ tree.
+name: GrammarBar
+options:
+  bundleIdPrefix: com.kusalkalinga
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
+    SWIFT_STRICT_CONCURRENCY: minimal      # matches swiftLanguageModes: [.v5]
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"                # ad-hoc; swap for a Developer ID to ship
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: NO            # turn ON for notarized Developer ID builds
+    ALWAYS_SEARCH_USER_PATHS: NO
+
+targets:
+
+  # Logic lives in a framework so the app and the tests share one module.
+  GrammarBarCore:
+    type: framework
+    platform: macOS
+    sources:
+      - path: Sources/GrammarBarCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kusalkalinga.GrammarBarCore
+        GENERATE_INFOPLIST_FILE: YES
+        DEFINES_MODULE: YES
+        SKIP_INSTALL: YES
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks"
+
+  GrammarBar:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/GrammarBar
+    dependencies:
+      - target: GrammarBarCore
+        embed: true
+    settings:
+      base:
+        PRODUCT_NAME: GrammarBar
+        PRODUCT_BUNDLE_IDENTIFIER: com.kusalkalinga.GrammarBar
+        GENERATE_INFOPLIST_FILE: YES
+        # The whole point of this file: no Dock icon, menu bar only.
+        INFOPLIST_KEY_LSUIElement: YES
+        INFOPLIST_KEY_CFBundleDisplayName: GrammarBar
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+        # NOTE: CODE_SIGN_ENTITLEMENTS is deliberately absent. Entitlements come
+        # from the downloader workstream (Resources/*.entitlements) and are wired
+        # in once those files exist and xcodebuild can actually validate them.
+
+  GrammarBarCoreTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests/GrammarBarCoreTests
+    dependencies:
+      - target: GrammarBarCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.kusalkalinga.GrammarBarCoreTests
+        GENERATE_INFOPLIST_FILE: YES

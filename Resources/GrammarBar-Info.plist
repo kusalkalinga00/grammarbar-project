@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+    GrammarBar.app Info.plist — plan v2 §1/§4.1.
+
+    `LSUIElement = YES` is the menu bar requirement: no Dock icon, no app menu.
+    Combined with `NSApp.activate()` when the panel opens (§4.1) so the text fields
+    keep keyboard focus. Paste/⌘C/⌘V in a Dock-less app is the one thing §4.1 says
+    to test on day one, and that is a runtime behaviour, not something this file
+    can prove.
+
+    NOTE — a SwiftPM executable target cannot use this file: SwiftPM generates its
+    own bundle. It is here for the XcodeGen project (project.yml, another
+    workstream) to point `INFOPLIST_FILE` at. NOT VERIFIED: nothing has loaded it.
+-->
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>26.0</string>
+	<!-- Menu bar only: no Dock icon, no ⌘-Tab entry. -->
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>GrammarBar</string>
+	<!-- No usage-description keys on purpose: the app asks for no TCC-protected
+	     resource. No Accessibility permission (§1) and no camera/mic/etc. -->
+</dict>
+</plist>
