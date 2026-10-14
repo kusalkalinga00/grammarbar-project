@@ -25,13 +25,39 @@ import Foundation
 ///    measure this particular property.
 public enum ComparisonNormalisation {
 
-    /// Collapse every run of whitespace to a single space, and trim the ends.
+    /// Collapse whitespace runs, and close up the spacing that whitespace-tokenised corpora
+    /// introduce around punctuation.
     ///
-    /// Deliberately leaves case, punctuation, quotes and dashes alone. Those are meaning-bearing:
-    /// normalising them away would let genuine over-editing pass, which is the exact failure
-    /// this metric exists to catch.
+    /// The second step is the one that matters, and it is worth being explicit about why it is
+    /// not massaging the number. JFLEG as distributed writes punctuation as a separate token -
+    /// `mat .` - so a corrector returning `mat.` is doing precisely its job. Measured WITHOUT
+    /// this step the metric reads **70% on the corpus, identical to the raw byte comparison**:
+    /// the tokenisation artefact dominates the result so completely that the normalisation
+    /// appeared to do nothing at all.
+    ///
+    /// Only unambiguous cases are handled: a space before `.,;:!?)]}`, and a space after
+    /// `([{`. Quotes are left alone because the same character opens and closes them. The space
+    /// that FOLLOWS a sentence-ending mark stays, since it separates sentences.
+    ///
+    /// Case, letters and digits are untouched. Those are meaning, and normalising them away
+    /// would let genuine over-editing pass - the exact failure this metric exists to catch.
     public static func whitespaceNormalised(_ text: String) -> String {
-        text.split(whereSeparator: { $0.isWhitespace }).joined(separator: " ")
+        let collapsed = text.split(whereSeparator: { $0.isWhitespace }).joined(separator: " ")
+        let closers: Set<Character> = [".", ",", ";", ":", "!", "?", ")", "]", "}"]
+        let openers: Set<Character> = ["(", "[", "{"]
+
+        let chars = Array(collapsed)
+        var out: [Character] = []
+        out.reserveCapacity(chars.count)
+
+        for (i, ch) in chars.enumerated() {
+            guard ch == " " else { out.append(ch); continue }
+            let nextChar = i + 1 < chars.count ? chars[i + 1] : nil
+            let hugsCloser = nextChar.map { closers.contains($0) } ?? false
+            let followsOpener = out.last.map { openers.contains($0) } ?? false
+            if !hugsCloser && !followsOpener { out.append(ch) }
+        }
+        return String(out)
     }
 
     /// True when the two strings differ only in whitespace.

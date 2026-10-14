@@ -57,8 +57,8 @@ targets:
         INFOPLIST_KEY_LSUIElement: YES
         INFOPLIST_KEY_CFBundleDisplayName: GrammarBar
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
-        MARKETING_VERSION: "0.1.0"
-        CURRENT_PROJECT_VERSION: "1"
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "2"
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
         # NOTE: CODE_SIGN_ENTITLEMENTS is deliberately absent. Entitlements come
         # from the downloader workstream (Resources/*.entitlements) and are wired

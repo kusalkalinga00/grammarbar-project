@@ -32,6 +32,21 @@ final class ComparisonNormalisationTests: XCTestCase {
             "the cat sat", "The cat sat"))
     }
 
+    /// The artefact this normalisation exists for: JFLEG writes its punctuation as a separate
+    /// token, so a corrector closing `mat .` to `mat.` is doing its job, not over-editing.
+    func testTokenisedPunctuationIsNotAChange() {
+        XCTAssertTrue(ComparisonNormalisation.unchangedIgnoringWhitespace(
+            "The cat sat on the mat .", "The cat sat on the mat."))
+        XCTAssertTrue(ComparisonNormalisation.unchangedIgnoringWhitespace(
+            "( the cat )", "(the cat)"))
+    }
+
+    /// The sentence-separating space must survive, or two sentences would be welded together.
+    func testSentenceSeparatingSpaceSurvives() {
+        XCTAssertFalse(ComparisonNormalisation.unchangedIgnoringWhitespace(
+            "First sentence. Second sentence.", "First sentence.Second sentence."))
+    }
+
     func testRealEditsAreStillChanges() {
         XCTAssertFalse(ComparisonNormalisation.unchangedIgnoringWhitespace(
             "i has a apple", "I have an apple."))
