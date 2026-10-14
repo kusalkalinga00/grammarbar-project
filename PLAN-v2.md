@@ -477,6 +477,18 @@ At launch and each time the panel opens:
 Card text: *"Apple's on-device model isn't available (reason). Turn it on in System Settings, or
 download a small offline model (≈ XXX MB)."* Buttons: **[Open Settings] [Download offline model]**.
 
+**v1 status — what actually shipped.** v1 is Apple-only and nothing can install a
+model yet, so exactly one branch above exists in the app: `status != .ready` shows a
+full-panel notice naming the specific reason, with a single **[Open System Settings]**
+button. The switch-to-local and download branches remain v2 design, kept here as the
+reference for when the downloader lands, not as a description of current behaviour.
+
+The code reflects that deliberately: `EngineRegistry` exposes `unavailableReason`
+rather than a `Suggestion` carrying kinds, the panel has no engine picker, and there
+is no model-management section in Settings. A control whose only other option can
+never become ready is a bug, not a feature. `LocalGrammarEngine`, `ModelStore` and
+`ModelCatalog` stay compiled and tested behind the same protocol so v2 is additive.
+
 ---
 
 ## 5. Model delivery

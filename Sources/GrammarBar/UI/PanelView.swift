@@ -5,22 +5,23 @@ import GrammarBarCore
 struct PanelView: View {
     @Environment(EngineRegistry.self) private var registry
     @Environment(CorrectionViewModel.self) private var model
-    @Environment(\.openURL) private var openURL
     @State private var showSettings = false
 
     // Panel sizing.
     //
     // Fixed (non-scrolling) space is roughly:
-    //   header                       ~38   (picker + vertical padding)
+    //   header                       ~30   (wordmark + controls + vertical padding)
     //   output header + paddings     ~38
     //   input block                  ~128  (padding 24 + editor 72 + row 32)
     //   two dividers                 ~2
     //                                ----
-    //                                ~206
+    //                                ~198
     //
     // At the old 560 that left ~350pt of mostly-empty output area, which read as
-    // dead space. 420 leaves ~215pt — enough for a paragraph without looking
-    // hollow, and the empty state now says what will appear there.
+    // dead space. 420 leaves ~222pt - enough for a paragraph without looking
+    // hollow, and the empty state now names what will appear there. Dropping the
+    // engine picker (v1 has a single engine) gave the header back ~8pt, which goes
+    // to the output area.
     private static let panelWidth: CGFloat = 420
     private static let panelHeight: CGFloat = 420
 
@@ -29,14 +30,16 @@ struct PanelView: View {
             header
             Divider()
 
-            if let suggestion = registry.suggestion {
-                SuggestionCard(suggestion: suggestion) { handle(suggestion) }
+            if let reason = registry.unavailableReason {
+                // Nothing can be corrected, so there is nothing to type into. Live
+                // editors here would invite the user to type a paragraph and then
+                // watch Submit do nothing.
+                UnavailableView(reason: reason) { openAppleIntelligenceSettings() }
+            } else {
+                OutputView()
                 Divider()
+                InputView()
             }
-
-            OutputView()
-            Divider()
-            InputView()
         }
         .frame(width: Self.panelWidth, height: Self.panelHeight)
         .sheet(isPresented: $showSettings) {
@@ -53,17 +56,10 @@ struct PanelView: View {
 
     private var header: some View {
         HStack(spacing: 8) {
-            Picker("Engine", selection: Binding(
-                get: { registry.selected },
-                set: { value in Task { await registry.select(value) } }
-            )) {
-                ForEach(EngineKind.allCases, id: \.self) { kind in
-                    Text(kind.displayName).tag(kind)
-                }
-            }
-            .labelsHidden()
-            .pickerStyle(.menu)
-            .frame(maxWidth: 230)
+            // A wordmark, not a picker: v1 offers one engine, so a picker would
+            // only be a way to select an engine that can never become ready.
+            Text("GrammarBar")
+                .font(.subheadline.weight(.semibold))
 
             Spacer()
 
@@ -109,19 +105,23 @@ struct PanelView: View {
         .padding(.vertical, 8)
     }
 
-    private func handle(_ suggestion: EngineRegistry.Suggestion) {
-        switch suggestion.kind {
-        case .switchToLocal:
-            Task { await registry.select(.local) }
-        case .offerDownload:
-            // Week 4 replaces this with the XPC downloader. Until then the
-            // honest action is sending the user to the relevant System Settings
-            // pane rather than pretending a download exists.
-            if let url = URL(string: "x-apple.systempreferences:com.apple.preferences.AppleIntelligence") {
-                openURL(url)
-            } else if let url = URL(string: "x-apple.systempreferences:") {
-                openURL(url)
-            }
+    /// Opens the Apple Intelligence pane in System Settings.
+    ///
+    /// Builds each URL and reports whether the open actually succeeded, rather than
+    /// trusting `URL(string:)` to be non-nil - which it is for almost any input, so
+    /// the old check could pass while the button silently did nothing.
+    private func openAppleIntelligenceSettings() {
+        let candidates = [
+            "x-apple.systempreferences:com.apple.preferences.AppleIntelligence",
+            "x-apple.systempreferences:",
+        ]
+        for candidate in candidates {
+            guard let url = URL(string: candidate) else { continue }
+            if NSWorkspace.shared.open(url) { return }
+        }
+        // Last resort: System Settings itself, so the button is never inert.
+        if let url = URL(string: "x-apple.systempreferences:") {
+            NSWorkspace.shared.open(url)
         }
     }
 }

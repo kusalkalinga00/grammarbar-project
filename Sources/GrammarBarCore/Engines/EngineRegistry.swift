@@ -1,33 +1,34 @@
 import Foundation
 import Observation
 
-/// Owns which engine is active and applies the availability decision from
-/// plan v2 §4.8. Deliberately not @MainActor-annotated so the SwiftUI `@State`
-/// default-value path stays clean; all mutation happens from view code.
+/// Owns which engine is active, and reports whether it can serve a correction.
+///
+/// v1 ships the Apple engine only. `LocalGrammarEngine`, `ModelStore` and
+/// `ModelCatalog` stay compiled and correct behind the same protocol, but nothing
+/// can install weights yet - the in-app downloader is the deferred v2 work - so the
+/// app offers no way to choose them. That is a deliberate v1 shape, not an
+/// unfinished feature: a control whose only other option can never work is a bug
+/// with a nicer coat on.
 @Observable
 public final class EngineRegistry {
 
-    public struct Suggestion: Equatable {
-        public enum Kind: Equatable { case switchToLocal, offerDownload }
-        public let kind: Kind
-        public let reason: String
-    }
+    /// Always `.apple` in v1.
+    ///
+    /// This deliberately does NOT read a stored preference from earlier builds. A
+    /// value of `.local` written back when the engine picker existed would otherwise
+    /// survive into a build with no picker, stranding the app on an engine that can
+    /// never become ready and offering no way back out. There is nothing to persist
+    /// while there is only one choice.
+    public private(set) var selected: EngineKind = .apple
 
-    public private(set) var selected: EngineKind
     public let apple: AppleGrammarEngine
     public let local: LocalGrammarEngine
     public let store: ModelStore
 
-    private let defaults: UserDefaults
-    private static let selectedKey = "GrammarBar.selectedEngine"
-
-    public init(defaults: UserDefaults = .standard, store: ModelStore = ModelStore()) {
-        self.defaults = defaults
+    public init(store: ModelStore = ModelStore()) {
         self.store = store
         self.apple = AppleGrammarEngine()
         self.local = LocalGrammarEngine(store: store)
-        let raw = defaults.string(forKey: Self.selectedKey) ?? EngineKind.apple.rawValue
-        self.selected = EngineKind(rawValue: raw) ?? .apple
     }
 
     public var current: any GrammarEngine {
@@ -36,30 +37,21 @@ public final class EngineRegistry {
 
     public var currentStatus: EngineStatus { current.status }
 
-    /// nil means "show the normal UI".
-    public var suggestion: Suggestion? {
-        if current.status.isReady { return nil }
+    /// `nil` means the app can correct text. Non-nil is the reason it cannot,
+    /// phrased for the user.
+    ///
+    /// v1 has exactly one such reason - Apple Intelligence unavailable - and no
+    /// alternative to offer, because there is nothing installable to offer.
+    public var unavailableReason: String? { currentStatus.message }
 
-        let appleReason = apple.status.message ?? "Apple Intelligence is unavailable."
-        switch selected {
-        case .apple:
-            if store.installedManifest() != nil {
-                return Suggestion(kind: .switchToLocal, reason: appleReason)
-            }
-            return Suggestion(kind: .offerDownload, reason: appleReason)
-        case .local:
-            return Suggestion(kind: .offerDownload,
-                              reason: local.status.message ?? "No offline model is installed.")
-        }
-    }
-
-    /// Switching engines must cancel cleanly and unload the outgoing model
-    /// (plan v2 NFR3, and the §8 "switching mid-request" behaviour test).
+    /// Engine switching, kept for the offline engine. Nothing in the v1 UI calls
+    /// this, since there is only one engine to offer; the cancel-then-unload
+    /// ordering is the part v2 must not lose (NFR3, and the "switching mid-request"
+    /// behaviour test in the plan).
     public func select(_ kind: EngineKind) async {
         guard kind != selected else { return }
         await current.unload()
         selected = kind
-        defaults.set(kind.rawValue, forKey: Self.selectedKey)
     }
 
     public func prewarmCurrent() async {
