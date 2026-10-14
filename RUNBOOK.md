@@ -30,7 +30,7 @@ cd ~/Developer/personal/GrammarBar
 swift test --filter ReconRegressionTests       # ~0.03s, 11 tests
 
 # 2. Full unit suite
-swift test                                     # ~173 tests
+swift test                                     # 179 tests
 
 # 3. Smoke the eval harness against the live engine (3 cases)
 swift run GrammarBarEval --limit 3 --label smoke --quiet
@@ -51,7 +51,7 @@ There is no CI yet and no lint gate. The four gates that matter are named in
 
 | Need | Check | Notes |
 |---|---|---|
-| Xcode 27 + SDK | `xcodebuild -version` · `xcrun --sdk macosx --show-sdk-version` | Must be ≥ 26.0 for `FoundationModels` |
+| Xcode + SDK | `xcodebuild -version` · `xcrun --sdk macosx --show-sdk-version` | **Xcode ≥ 26** (SDK ≥ macOS 26.0) for `FoundationModels`. Xcode 27 is *not* required, and the CI runner deliberately stays on 26.6 |
 | XcodeGen | `xcodegen --version` | `brew install xcodegen` — only needed for the `.app` bundle |
 | Apple Intelligence **on** | see §5.1 | Without it the Apple engine reports `.unavailable` and the app shows a suggestion card |
 | Python 3 + venv | `Bench/.venv/bin/python -V` | **Only** for the benchmark (§6). The app and tests never need Python |
@@ -479,7 +479,9 @@ GrammarBar/
 
 ### The two invariants worth remembering
 
-1. **Privacy:** the process that touches user text has no network entitlement.
+1. **Privacy:** the process that touches user text contains no networking code, and the
+   library that has any is not linked into it. (The entitlement is intent only until signing
+   is wired up — see the Privacy section of README.md.)
    `Resources/GrammarBar.entitlements` deliberately omits
    `com.apple.security.network.client` rather than setting it `false`.
 2. **Meaning:** a correction must never change what the text says. `meaningChangedCases`

@@ -22,7 +22,7 @@ macOS 27.0.1 / Apple M5.
 
 **Verified:**
 
-- `swift build` clean · **173 tests passing** (48 core, 125 downloader)
+- `swift build` clean · **179 tests passing** (54 core, 125 downloader)
 - `xcodebuild` Debug **and** Release succeed
 - The bundle carries `LSUIElement=true` and launches as Launch Services
   `type="UIElement"` — a menu bar app with no Dock icon
@@ -82,8 +82,11 @@ with its checksum — that is the artifact the cask points at.
 ## Requirements
 
 - macOS 26+ on Apple Silicon
-- Xcode 27 for `FoundationModels`
-- Apple Intelligence **enabled** for the default engine
+- Xcode **26 or later** for `FoundationModels`. The project builds against the macOS 26
+  SDK, which is the floor every user has — CI runs the macOS 26 / Xcode 26.6 runner
+  deliberately, and it caught a macOS-27-only API spelling that would have made the
+  project unbuildable for anyone on the current stable Xcode.
+- Apple Intelligence **enabled** — the only engine in v1
 - `xcodegen` (`brew install xcodegen`) only to build the `.app` bundle
 
 ## Quick start
@@ -91,7 +94,7 @@ with its checksum — that is the artifact the cask points at.
 ```sh
 git clone https://github.com/kusalkalinga00/grammarbar-project.git && cd grammarbar-project
 
-swift test                                  # 173 tests
+swift test                                  # 179 tests
 swift run GrammarBarEval --label first-party # quality baseline
 
 xcodegen generate                           # -> GrammarBar.xcodeproj
@@ -105,26 +108,32 @@ with measured expected outputs, and troubleshooting.
 
 ## Design
 
-Two engines behind one protocol. Both drive
-`FoundationModels.LanguageModelSession`, because the macOS 27 SDK's
-`MLXFoundationModels` adapts an MLX model to the same `LanguageModel` protocol —
-so there is one session code path and two model backends.
+Two engines behind one protocol, both driving
+`FoundationModels.LanguageModelSession` — the macOS 27 SDK's `MLXFoundationModels`
+adapts an MLX model to the same `LanguageModel` protocol, so there is one session
+code path and two model backends.
 
-| Engine | What it is |
-|---|---|
-| `AppleGrammarEngine` | Apple's on-device system model. Zero bytes shipped. **Default.** |
-| `LocalGrammarEngine` | Offline MLX model under 500 MB. Stub — lands in week 5. |
+| Engine | What it is | Status in v1 |
+|---|---|---|
+| `AppleGrammarEngine` | Apple's on-device system model. Zero bytes shipped. | **the only engine the app offers** |
+| `LocalGrammarEngine` | Offline MLX model under 500 MB. | implemented and tested, **not surfaced** |
+
+`LocalGrammarEngine`, `ModelStore` and `ModelCatalog` are written and covered by tests but
+deliberately unreachable: nothing can install model weights yet, so offering them would be
+offering a dead end. Options and evidence are in `V2-ENGINE-DECISION.md`.
 
 ```text
-GrammarBar.app (sandboxed, NO network entitlement)
+GrammarBar.app   (v1: ad-hoc signed, sandbox NOT enforced — see Privacy)
   MenuBarExtra ─ PanelView ─ CorrectionViewModel
                                  │
         CorrectionService ─ Chunker · Sanitizer · Validator · TenseGuard
                                  │
-                     EngineRegistry ── AppleGrammarEngine
+                     EngineRegistry ── AppleGrammarEngine   <- what v1 runs
                                     └── LocalGrammarEngine → ModelStore
 
-GrammarDownloader.xpc (sandboxed, network ON, never sees user text)
+Built in this repo but NOT linked into GrammarBar.app in v1:
+  GrammarDownloaderCore   (the only networking code in the project)
+  GrammarDownloader.xpc   (planned helper; not in project.yml yet)
 ```
 
 ### Two failure modes this project exists to handle
@@ -150,16 +159,25 @@ went 83/200 → 93/200, false flags 23 → 5.
 
 ## Privacy
 
-The process that handles your text has **no network entitlement** —
-`com.apple.security.network.client` is absent from `GrammarBar.entitlements`
-rather than set to `false`, so the capability never existed. Model downloading
-(not yet built) runs in a separate XPC helper that never receives user text. v1 stores no history and logs nothing.
+v1 has **no networking code at all** — verified by inspection, not asserted: no networking
+API appears in `Sources/GrammarBar/` or `Sources/GrammarBarCore/`, and the app target links
+only `GrammarBarCore`, while the one library in the project containing `URLSession`
+(`GrammarDownloaderCore`) is not linked into it. No account, no analytics, no crash
+reporting, no update check. It stores no history and logs nothing.
+
+**About the sandbox, precisely.** `Resources/GrammarBar.entitlements` exists and correctly
+omits `com.apple.security.network.client` — but it is **not attached to the build**. There is
+no `CODE_SIGN_ENTITLEMENTS` on the target and the app is ad-hoc signed, so the sandbox is not
+enforced. The protection in v1 is the absence of networking code, not the sandbox. Wiring that
+entitlement up is part of the signing work the Developer ID path needs.
+
+Model downloading is not in this build; there is no XPC helper yet.
 
 ## Testing
 
 | Layer | Command | Scale |
 |---|---|---|
-| Unit | `swift test` | 173 tests |
+| Unit | `swift test` | 179 tests |
 | Regression pins | `swift test --filter ReconRegressionTests` | the two bugs above |
 | Quality baseline | `swift run GrammarBarEval --label first-party` | 48 cases, ~50 s |
 | Full corpus eval | `swift run GrammarBarEval` | 260 cases, ~5 min |
@@ -190,7 +208,7 @@ Full terms: `Eval/LICENSES.md`.
 ```text
 ├─ PLAN-v2.md            design + every measured finding (read §0 first)
 ├─ RUNBOOK.md            how to build, run and test
-├─ project.yml           XcodeGen source of truth (bundle, entitlements, XPC)
+├─ project.yml           XcodeGen source of truth (bundle id, plist keys, version)
 ├─ Package.swift         SwiftPM, for the edit/test loop
 ├─ recon/                the original probe that produced the plan's §0
 ├─ Sources/
@@ -208,8 +226,16 @@ Full terms: `Eval/LICENSES.md`.
 ## Open decisions
 
 - **Distribution.** v1 targets a **Homebrew tap**, not the Mac App Store. A personal tap
-  needs no Apple Developer account, no notarization and no sandbox, and costs nothing. The
-  App Store and a notarized Developer ID build are both deferred, not rejected.
+  needs no Apple Developer account, no notarization and no sandbox, and costs nothing — but it
+  is **not friction-free**: measured on a real install, the app *is* quarantined and Gatekeeper
+  prompts on first launch, so every user approves it once under System Settings → Privacy &
+  Security. Removing that friction needs Developer ID + notarization ($99/yr). The App Store is
+  deferred, not rejected.
+- **Where FR6 lives.** Launch at login and a global panel shortcut are the two unimplemented
+  parts of FR6, and removing the Settings window left them with no home. They need either a
+  right-click menu on the menu bar icon or a Settings window reintroduced once there is a
+  second setting to justify one. Note `SMAppService.mainApp.register()` is **unverified** for an
+  ad-hoc signed app — test it before promising the feature.
 - **Offline engine (v2).** Round 2 found an offline model in Apple's quality band, so this
   is a real choice now rather than a dead end. Options, evidence and the three cheap checks
   that should come first are in [`V2-ENGINE-DECISION.md`](V2-ENGINE-DECISION.md).
