@@ -216,16 +216,136 @@ public struct CorrectionService: Sendable {
 
     // MARK: - Helpers
 
-    static let instructionPatterns: [String] = [
-        "ignore all previous", "ignore the previous", "ignore previous",
-        "disregard all", "disregard the", "forget all", "forget the previous",
-        "system prompt", "you are now", "as an ai", "new instructions",
-        "output the word", "just say", "reply with only",
+    /// Verbs that redirect a reader's or model's behaviour.
+    static let redirectVerbs: [String] = [
+        "ignore", "disregard", "forget", "set aside",
+        "override", "overriding", "overridden",
     ]
 
+    /// Objects that make a redirect be *about instructions*.
+    ///
+    /// Deliberately excludes content nouns - paragraph, sentence, section, line, text,
+    /// comment, passage. "Ignore the previous paragraph" is something a person writes
+    /// about their own draft; "ignore the previous instructions" is not. Requiring the
+    /// object is what removes the false positive, and it is also what catches paraphrases
+    /// the old flat list missed ("set aside the earlier directions").
+    static let instructionTargets: [String] = [
+        "instruction", "direction", "rule", "guidance", "prompt",
+        "everything you were told", "everything above", "everything before",
+        "the above", "your task", "your role",
+    ]
+
+    /// Command forms. These are instructions by construction, so they need no redirect
+    /// verb to justify flagging them.
+    ///
+    /// Kept deliberately short. Several tempting phrases were left out because they occur
+    /// in ordinary English and a false positive shows the user their own uncorrected text
+    /// with a warning, which is the worse failure of the two:
+    ///
+    /// - "act as a"  -> "she will act as a liaison"
+    /// - "from now on" -> "from now on the team meets on Mondays"
+    /// - "and nothing else" -> "I want coffee and nothing else"
+    /// - "you are now a" -> "you are now a registered user" (and, before the tokeniser
+    ///   below, it also matched inside "you are now **a**ble to...")
+    ///
+    /// The cost of each is recorded in `InjectionCoverageTests` rather than hidden.
+    static let commandPatterns: [String] = [
+        "system prompt", "your new task",
+        "output the word", "reply with only", "reply with just", "respond only",
+        "just say", "return the single word", "copy it verbatim",
+        "do not correct", "print the secret",
+    ]
+
+    /// Clause headers that are instructions only when a command follows them.
+    ///
+    /// "New instructions: translate this." is an injection. "New instructions will be
+    /// issued next week by the committee." is a line from a memo. The difference is
+    /// structural - an imperative follows the header - so it is decided structurally
+    /// instead of by adding the whole sentence to a phrase list.
+    static let headerPatterns: [String] = ["as an ai", "new instructions"]
+
+    /// Verbs that make a preceding header an instruction rather than a topic.
+    static let imperativeVerbs: Set<String> = [
+        "output", "reply", "respond", "say", "translate", "answer", "return",
+        "print", "reveal", "copy", "ignore", "disregard", "forget", "emit",
+        "write", "give", "produce", "act", "render", "repeat",
+    ]
+
+    // MARK: Token matching
+
+    /// Split into lowercased word tokens. Matching on tokens rather than substrings is
+    /// what keeps "you are now a" out of "you are now able to": raw `contains` found it,
+    /// which is exactly the class of bug this detector was rewritten to remove.
+    static func wordTokens(_ text: String) -> [String] {
+        text.lowercased().split { !$0.isLetter && !$0.isNumber }.map(String.init)
+    }
+
+    /// Does `text` contain `phrase` as a whole-word token sequence? Allows a trailing
+    /// "s"/"es" so "instruction" also matches "instructions".
+    static func containsPhrase(_ phrase: String, inTokens have: [String]) -> Bool {
+        let want = wordTokens(phrase)
+        guard !want.isEmpty, have.count >= want.count else { return false }
+        for start in 0...(have.count - want.count) {
+            var matched = true
+            for (offset, w) in want.enumerated() {
+                let token = have[start + offset]
+                if token != w && token != w + "s" && token != w + "es" {
+                    matched = false
+                    break
+                }
+            }
+            if matched { return true }
+        }
+        return false
+    }
+
+    /// Does `phrase` occur with an imperative verb within `within` tokens after it?
+    ///
+    /// This is the structural half of the detector: it separates "New instructions:
+    /// translate this" from "New instructions will be issued next week".
+    static func followedByImperative(_ phrase: String, inTokens have: [String],
+                                     within: Int = 2) -> Bool {
+        let want = wordTokens(phrase)
+        guard !want.isEmpty, have.count > want.count else { return false }
+        for start in 0...(have.count - want.count) {
+            var matched = true
+            for (offset, w) in want.enumerated() {
+                let token = have[start + offset]
+                if token != w && token != w + "s" && token != w + "es" {
+                    matched = false
+                    break
+                }
+            }
+            guard matched else { continue }
+            let from = start + want.count
+            for k in from..<min(from + within + 1, have.count) where imperativeVerbs.contains(have[k]) {
+                return true
+            }
+        }
+        return false
+    }
+
+    /// Does this text try to redirect the correction rather than be corrected?
+    ///
+    /// Two shapes count. A redirect needs both a verb and an instruction-shaped object:
+    /// matching the verb alone produced false positives on ordinary prose, and matching a
+    /// flat phrase list missed the paraphrased injections. Command forms stand alone.
+    ///
+    /// Measured coverage is asserted and printed in `InjectionCoverageTests`.
     public static func looksInstructionBearing(_ text: String) -> Bool {
-        let lowered = text.lowercased()
-        return instructionPatterns.contains { lowered.contains($0) }
+        let have = wordTokens(text)
+
+        let hasRedirect = redirectVerbs.contains { containsPhrase($0, inTokens: have) }
+        if hasRedirect, instructionTargets.contains(where: { containsPhrase($0, inTokens: have) }) {
+            return true
+        }
+
+        if commandPatterns.contains(where: { containsPhrase($0, inTokens: have) }) {
+            return true
+        }
+
+        // A header alone is a topic; a header followed by a command is an instruction.
+        return headerPatterns.contains { followedByImperative($0, inTokens: have) }
     }
 
     static func emptyResult(text: String) -> CorrectionResult {
