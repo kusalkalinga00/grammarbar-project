@@ -1,0 +1,4304 @@
+{
+  "models": {
+    "Ateeqq/Text-Rewriter-Paraphraser": {
+      "model_id": "Ateeqq/Text-Rewriter-Paraphraser",
+      "sha": "7a799f7051465b36aa4b2659b2ad47ccc1836138",
+      "last_modified": "2025-04-08T16:47:46.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 203,
+      "likes": 30,
+      "download_bytes": 1786601414,
+      "download_mb": 1703.8,
+      "weights_bytes": 1783378286,
+      "weights_mb": 1700.8,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 891733454
+        },
+        {
+          "name": "model.safetensors",
+          "size": 891644832
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2422169
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "README.md",
+          "size": 4009
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1923
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 1786
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 1439
+        },
+        {
+          "name": "generation_config.json",
+          "size": 146
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/Ateeqq/Text-Rewriter-Paraphraser"
+    },
+    "HuggingFaceTB/SmolLM2-360M-Instruct": {
+      "model_id": "HuggingFaceTB/SmolLM2-360M-Instruct",
+      "sha": "a10cc1512eabd3dde888204e902eca88bddb4951",
+      "last_modified": "2025-09-22T20:44:35.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [
+        "HuggingFaceTB/SmolLM2-360M",
+        "quantized:HuggingFaceTB/SmolLM2-360M"
+      ],
+      "quant_tags": [],
+      "downloads": 241932,
+      "likes": 229,
+      "download_bytes": 5024413870,
+      "download_mb": 4791.7,
+      "weights_bytes": 5020814748,
+      "weights_mb": 4788.2,
+      "file_count": 27,
+      "files": [
+        {
+          "name": "onnx/model.onnx",
+          "size": 1449582810
+        },
+        {
+          "name": "onnx/model_fp16.onnx",
+          "size": 724891911
+        },
+        {
+          "name": "model.safetensors",
+          "size": 723674912
+        },
+        {
+          "name": "onnx/model_q4.onnx",
+          "size": 387943246
+        },
+        {
+          "name": "onnx/model_bnb4.onnx",
+          "size": 368284174
+        },
+        {
+          "name": "onnx/model_quantized.onnx",
+          "size": 364564671
+        },
+        {
+          "name": "onnx/model_uint8.onnx",
+          "size": 364564671
+        },
+        {
+          "name": "onnx/model_int8.onnx",
+          "size": 364564558
+        },
+        {
+          "name": "onnx/model_q4f16.onnx",
+          "size": 272737275
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2104556
+        },
+        {
+          "name": "vocab.json",
+          "size": 800662
+        },
+        {
+          "name": "merges.txt",
+          "size": 466391
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct"
+    },
+    "Qwen/Qwen2.5-0.5B-Instruct": {
+      "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "sha": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "last_modified": "2024-09-25T12:32:56.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [
+        "Qwen/Qwen2.5-0.5B",
+        "finetune:Qwen/Qwen2.5-0.5B"
+      ],
+      "quant_tags": [],
+      "downloads": 6431925,
+      "likes": 684,
+      "download_bytes": 999602607,
+      "download_mb": 953.3,
+      "weights_bytes": 988097824,
+      "weights_mb": 942.3,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 988097824
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 7031645
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671839
+        },
+        {
+          "name": "LICENSE",
+          "size": 11343
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 7305
+        },
+        {
+          "name": "README.md",
+          "size": 4917
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 659
+        },
+        {
+          "name": "generation_config.json",
+          "size": 242
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct"
+    },
+    "Rajkumar/punctuation_and_grammar_correction": {
+      "model_id": "Rajkumar/punctuation_and_grammar_correction",
+      "error": "HTTP 401"
+    },
+    "Unbabel/gec-t5-large": {
+      "model_id": "Unbabel/gec-t5-large",
+      "error": "HTTP 401"
+    },
+    "Unbabel/gec-t5_base": {
+      "model_id": "Unbabel/gec-t5_base",
+      "error": "HTTP 401"
+    },
+    "Unbabel/gec-t5_small": {
+      "model_id": "Unbabel/gec-t5_small",
+      "sha": "c958d53bfbce19c87342b69fc6bcaba7303d076f",
+      "last_modified": "2021-09-27T11:27:48.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 2882,
+      "likes": 26,
+      "download_bytes": 244269568,
+      "download_mb": 233.0,
+      "weights_bytes": 242083771,
+      "weights_mb": 230.9,
+      "file_count": 8,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 242083771
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 1387604
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1924
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 1786
+        },
+        {
+          "name": "config.json",
+          "size": 1440
+        },
+        {
+          "name": "README.md",
+          "size": 1387
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1175
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/Unbabel/gec-t5_small"
+    },
+    "bert-base-uncased": {
+      "model_id": "bert-base-uncased",
+      "sha": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "last_modified": "2024-02-19T11:06:12.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "fill-mask",
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 34772373,
+      "likes": 3430,
+      "download_bytes": 3454101667,
+      "download_mb": 3294.1,
+      "weights_bytes": 2918975670,
+      "weights_mb": 2783.8,
+      "file_count": 16,
+      "files": [
+        {
+          "name": "tf_model.h5",
+          "size": 536063208
+        },
+        {
+          "name": "rust_model.ot",
+          "size": 534240408
+        },
+        {
+          "name": "model.onnx",
+          "size": 532091246
+        },
+        {
+          "name": "coreml/fill-mask/float32_model.mlpackage/Data/com.apple.CoreML/weights/weight.bin",
+          "size": 531833856
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 440473133
+        },
+        {
+          "name": "model.safetensors",
+          "size": 440449768
+        },
+        {
+          "name": "flax_model.msgpack",
+          "size": 438064459
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 466062
+        },
+        {
+          "name": "vocab.txt",
+          "size": 231508
+        },
+        {
+          "name": "coreml/fill-mask/float32_model.mlpackage/Data/com.apple.CoreML/model.mlmodel",
+          "size": 164911
+        },
+        {
+          "name": "LICENSE",
+          "size": 11356
+        },
+        {
+          "name": "README.md",
+          "size": 10517
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/bert-base-uncased"
+    },
+    "bharathkumarsm/grammar_correction_using_t5": {
+      "model_id": "bharathkumarsm/grammar_correction_using_t5",
+      "error": "HTTP 401"
+    },
+    "distilbert-base-uncased": {
+      "model_id": "distilbert-base-uncased",
+      "sha": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+      "last_modified": "2024-05-06T13:44:53.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "fill-mask",
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 7716258,
+      "likes": 1488,
+      "download_bytes": 1529742421,
+      "download_mb": 1458.9,
+      "weights_bytes": 1167291991,
+      "weights_mb": 1113.2,
+      "file_count": 12,
+      "files": [
+        {
+          "name": "tf_model.h5",
+          "size": 363423424
+        },
+        {
+          "name": "rust_model.ot",
+          "size": 361732396
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 267967963
+        },
+        {
+          "name": "model.safetensors",
+          "size": 267954768
+        },
+        {
+          "name": "flax_model.msgpack",
+          "size": 267945836
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 466062
+        },
+        {
+          "name": "vocab.txt",
+          "size": 231508
+        },
+        {
+          "name": "LICENSE",
+          "size": 11356
+        },
+        {
+          "name": "README.md",
+          "size": 8577
+        },
+        {
+          "name": "config.json",
+          "size": 483
+        },
+        {
+          "name": ".gitattributes",
+          "size": 445
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 48
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/distilbert-base-uncased"
+    },
+    "facebook/bart-base": {
+      "model_id": "facebook/bart-base",
+      "sha": "aadd2ab0ae0c8268c7c9693540e9904811f36177",
+      "last_modified": "2022-11-16T23:23:10.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "feature-extraction",
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 267395,
+      "likes": 213,
+      "download_bytes": 2233837699,
+      "download_mb": 2130.4,
+      "weights_bytes": 2231122386,
+      "weights_mb": 2127.8,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "tf_model.h5",
+          "size": 557950280
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 557771387
+        },
+        {
+          "name": "model.safetensors",
+          "size": 557709915
+        },
+        {
+          "name": "flax_model.msgpack",
+          "size": 557690804
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 1355863
+        },
+        {
+          "name": "vocab.json",
+          "size": 898823
+        },
+        {
+          "name": "merges.txt",
+          "size": 456318
+        },
+        {
+          "name": "README.md",
+          "size": 2593
+        },
+        {
+          "name": "config.json",
+          "size": 1716
+        },
+        {
+          "name": ".gitattributes",
+          "size": 445
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/facebook/bart-base"
+    },
+    "felflare/bert-restore-punctuation": {
+      "model_id": "felflare/bert-restore-punctuation",
+      "sha": "954108a105ef1f89f08b71c25d6e33bb89cde724",
+      "last_modified": "2021-05-24T03:04:47.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "token-classification",
+      "library_name": "transformers",
+      "license_tags": [
+        "mit"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 1298,
+      "likes": 69,
+      "download_bytes": 1307296110,
+      "download_mb": 1246.7,
+      "weights_bytes": 435704294,
+      "weights_mb": 415.5,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "optimizer.pt",
+          "size": 871350381
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 435701303
+        },
+        {
+          "name": "vocab.txt",
+          "size": 231508
+        },
+        {
+          "name": "README.md",
+          "size": 4989
+        },
+        {
+          "name": "training_args.bin",
+          "size": 2991
+        },
+        {
+          "name": "model_args.json",
+          "size": 2427
+        },
+        {
+          "name": "config.json",
+          "size": 1246
+        },
+        {
+          "name": ".gitattributes",
+          "size": 690
+        },
+        {
+          "name": "scheduler.pt",
+          "size": 623
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 530
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 112
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/felflare/bert-restore-punctuation"
+    },
+    "google/electra-small-discriminator": {
+      "model_id": "google/electra-small-discriminator",
+      "sha": "fa8239aadc095e9164941d05878b98afe9b953c3",
+      "last_modified": "2024-02-29T10:20:20.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 266593,
+      "likes": 44,
+      "download_bytes": 163615446,
+      "download_mb": 156.0,
+      "weights_bytes": 162914952,
+      "weights_mb": 155.4,
+      "file_count": 9,
+      "files": [
+        {
+          "name": "tf_model.h5",
+          "size": 54466044
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 54245363
+        },
+        {
+          "name": "flax_model.msgpack",
+          "size": 54203545
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 466062
+        },
+        {
+          "name": "vocab.txt",
+          "size": 231508
+        },
+        {
+          "name": "README.md",
+          "size": 2211
+        },
+        {
+          "name": "config.json",
+          "size": 665
+        },
+        {
+          "name": ".gitattributes",
+          "size": 391
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 48
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/google/electra-small-discriminator"
+    },
+    "grammarly/coedit-base": {
+      "model_id": "grammarly/coedit-base",
+      "error": "HTTP 401"
+    },
+    "grammarly/coedit-large": {
+      "model_id": "grammarly/coedit-large",
+      "sha": "5637bcdf9d8d4419f97c8cfea36f7d35c79232b6",
+      "last_modified": "2024-04-28T02:30:16.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "cc-by-nc-4.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 4807,
+      "likes": 161,
+      "download_bytes": 6268283815,
+      "download_mb": 5977.9,
+      "weights_bytes": 6265000584,
+      "weights_mb": 5974.8,
+      "file_count": 12,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 3132556293
+        },
+        {
+          "name": "model.safetensors",
+          "size": 3132439432
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2422262
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "trainer_state.json",
+          "size": 60538
+        },
+        {
+          "name": "training_args.bin",
+          "size": 4859
+        },
+        {
+          "name": "README.md",
+          "size": 3148
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 2497
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 2201
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1477
+        },
+        {
+          "name": "config.json",
+          "size": 787
+        },
+        {
+          "name": "generation_config.json",
+          "size": 142
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/grammarly/coedit-large"
+    },
+    "grammarly/coedit-small": {
+      "model_id": "grammarly/coedit-small",
+      "error": "HTTP 401"
+    },
+    "mlx-community/Hunyuan-0.5B-Instruct-4bit": {
+      "model_id": "mlx-community/Hunyuan-0.5B-Instruct-4bit",
+      "error": "HTTP 401"
+    },
+    "mlx-community/LFM2-350M-4bit": {
+      "model_id": "mlx-community/LFM2-350M-4bit",
+      "sha": "18dc72abf3b2337f9123cfd6eeeb58dfa7947066",
+      "last_modified": "2025-07-11T23:20:10.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "other"
+      ],
+      "base_model_tags": [
+        "LiquidAI/LFM2-350M",
+        "quantized:LiquidAI/LFM2-350M"
+      ],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 158,
+      "likes": 4,
+      "download_bytes": 204378119,
+      "download_mb": 194.9,
+      "weights_bytes": 199527820,
+      "weights_mb": 190.3,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 199527820
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 4732426
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 91509
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 23413
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 1253
+        },
+        {
+          "name": "README.md",
+          "size": 918
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 434
+        },
+        {
+          "name": "chat_template.jinja",
+          "size": 209
+        },
+        {
+          "name": "generation_config.json",
+          "size": 137
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/LFM2-350M-4bit"
+    },
+    "mlx-community/LFM2-700M-4bit": {
+      "model_id": "mlx-community/LFM2-700M-4bit",
+      "sha": "6b32895938db95f2d40f2d0d70c10117fba5297a",
+      "last_modified": "2025-07-11T23:31:37.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "other"
+      ],
+      "base_model_tags": [
+        "LiquidAI/LFM2-700M",
+        "quantized:LiquidAI/LFM2-700M"
+      ],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 103,
+      "likes": 1,
+      "download_bytes": 422677782,
+      "download_mb": 403.1,
+      "weights_bytes": 417827482,
+      "weights_mb": 398.5,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 417827482
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 4732426
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 91509
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 23413
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 1254
+        },
+        {
+          "name": "README.md",
+          "size": 918
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 434
+        },
+        {
+          "name": "chat_template.jinja",
+          "size": 209
+        },
+        {
+          "name": "generation_config.json",
+          "size": 137
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/LFM2-700M-4bit"
+    },
+    "mlx-community/Llama-3.2-1B-Instruct-4bit": {
+      "model_id": "mlx-community/Llama-3.2-1B-Instruct-4bit",
+      "sha": "08231374eeacb049a0eade7922910865b8fce912",
+      "last_modified": "2025-03-05T03:15:11.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "llama3.2"
+      ],
+      "base_model_tags": [
+        "mlx-community/Llama-3.2-1B-Instruct-bf16",
+        "quantized:mlx-community/Llama-3.2-1B-Instruct-bf16"
+      ],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 31593,
+      "likes": 21,
+      "download_bytes": 712592285,
+      "download_mb": 679.6,
+      "weights_bytes": 695283921,
+      "weights_mb": 663.1,
+      "file_count": 8,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 695283921
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 17209920
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 54558
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 26159
+        },
+        {
+          "name": "README.md",
+          "size": 16310
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1570
+        },
+        {
+          "name": "config.json",
+          "size": 1121
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 296
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/mlx-community/Llama-3.2-1B-Instruct-4bit"
+    },
+    "mlx-community/Phi-3.5-mini-instruct-4bit": {
+      "model_id": "mlx-community/Phi-3.5-mini-instruct-4bit",
+      "sha": "7b2052fd882fe017300d4d42a4eb06a27b816af4",
+      "last_modified": "2024-08-24T06:12:14.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "mit"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 1623,
+      "likes": 11,
+      "download_bytes": 2152173338,
+      "download_mb": 2052.5,
+      "weights_bytes": 2149696133,
+      "weights_mb": 2050.1,
+      "file_count": 13,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 2149696133
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 1844436
+        },
+        {
+          "name": "tokenizer.model",
+          "size": 499723
+        },
+        {
+          "name": "modeling_phi3.py",
+          "size": 73814
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 32695
+        },
+        {
+          "name": "configuration_phi3.py",
+          "size": 11153
+        },
+        {
+          "name": "sample_finetune.py",
+          "size": 6131
+        },
+        {
+          "name": "config.json",
+          "size": 4149
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 3352
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "README.md",
+          "size": 890
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 569
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/mlx-community/Phi-3.5-mini-instruct-4bit"
+    },
+    "mlx-community/Qwen1.5-0.5B-Chat-4bit": {
+      "model_id": "mlx-community/Qwen1.5-0.5B-Chat-4bit",
+      "sha": "659d8dafc39202a6688bb46242d60440702489b1",
+      "last_modified": "2024-04-18T20:54:59.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "other"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 21031,
+      "likes": 4,
+      "download_bytes": 272764243,
+      "download_mb": 260.1,
+      "weights_bytes": 261240111,
+      "weights_mb": 249.1,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 261240111
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 7028015
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671853
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 44209
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1298
+        },
+        {
+          "name": "config.json",
+          "size": 785
+        },
+        {
+          "name": "README.md",
+          "size": 692
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 367
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 80
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/Qwen1.5-0.5B-Chat-4bit"
+    },
+    "mlx-community/Qwen2-0.5B-Instruct-4bit": {
+      "model_id": "mlx-community/Qwen2-0.5B-Instruct-4bit",
+      "sha": "107ca40780ff3f9088bac83c2f289f40f335affc",
+      "last_modified": "2024-06-06T18:10:35.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 86,
+      "likes": 1,
+      "download_bytes": 289588857,
+      "download_mb": 276.2,
+      "weights_bytes": 278064766,
+      "weights_mb": 265.2,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 278064766
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 7028043
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671853
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 44209
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1299
+        },
+        {
+          "name": "config.json",
+          "size": 783
+        },
+        {
+          "name": "README.md",
+          "size": 624
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 367
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 80
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/Qwen2-0.5B-Instruct-4bit"
+    },
+    "mlx-community/Qwen2.5-0.5B-Instruct-4bit": {
+      "model_id": "mlx-community/Qwen2.5-0.5B-Instruct-4bit",
+      "sha": "a5339a4131f135d0fdc6a5c8b5bbed2753bbe0f3",
+      "last_modified": "2024-09-18T18:39:51.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [
+        "Qwen/Qwen2.5-0.5B",
+        "finetune:Qwen/Qwen2.5-0.5B"
+      ],
+      "quant_tags": [],
+      "downloads": 72336,
+      "likes": 8,
+      "download_bytes": 289599545,
+      "download_mb": 276.2,
+      "weights_bytes": 278064920,
+      "weights_mb": 265.2,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 278064920
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 7031673
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671853
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 44209
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 7308
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 783
+        },
+        {
+          "name": "README.md",
+          "size": 748
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 613
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 605
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/Qwen2.5-0.5B-Instruct-4bit"
+    },
+    "mlx-community/Qwen2.5-0.5B-Instruct-4bit-DWQ": {
+      "model_id": "mlx-community/Qwen2.5-0.5B-Instruct-4bit-DWQ",
+      "error": "HTTP 401"
+    },
+    "mlx-community/Qwen3-0.6B-4bit": {
+      "model_id": "mlx-community/Qwen3-0.6B-4bit",
+      "sha": "73e3e38d981303bc594367cd910ea6eb48349da8",
+      "last_modified": "2025-04-28T21:26:13.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [
+        "Qwen/Qwen3-0.6B",
+        "quantized:Qwen/Qwen3-0.6B"
+      ],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 36725,
+      "likes": 18,
+      "download_bytes": 351384491,
+      "download_mb": 335.1,
+      "weights_bytes": 335450584,
+      "weights_mb": 319.9,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 335450584
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 11422654
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671853
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 49731
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 9706
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1570
+        },
+        {
+          "name": "config.json",
+          "size": 937
+        },
+        {
+          "name": "README.md",
+          "size": 873
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 707
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 613
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/Qwen3-0.6B-4bit"
+    },
+    "mlx-community/Qwen3-0.6B-4bit-DWQ": {
+      "model_id": "mlx-community/Qwen3-0.6B-4bit-DWQ",
+      "sha": "e630d870397d5a2d95fe0c9075c6f499fc0fc5c8",
+      "last_modified": "2025-05-03T19:57:47.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [
+        "Qwen/Qwen3-0.6B",
+        "quantized:Qwen/Qwen3-0.6B"
+      ],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 142,
+      "likes": 0,
+      "download_bytes": 351384471,
+      "download_mb": 335.1,
+      "weights_bytes": 335450548,
+      "weights_mb": 319.9,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 335450548
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 11422654
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671853
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 49731
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 9706
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1570
+        },
+        {
+          "name": "config.json",
+          "size": 937
+        },
+        {
+          "name": "README.md",
+          "size": 889
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 707
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 613
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/Qwen3-0.6B-4bit-DWQ"
+    },
+    "mlx-community/Qwen3-0.6B-8bit": {
+      "model_id": "mlx-community/Qwen3-0.6B-8bit",
+      "sha": "11de96878523501bcaa86104e3c186de07ff9068",
+      "last_modified": "2025-05-04T11:58:56.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [
+        "Qwen/Qwen3-0.6B",
+        "quantized:Qwen/Qwen3-0.6B"
+      ],
+      "quant_tags": [
+        "8-bit"
+      ],
+      "downloads": 69804,
+      "likes": 8,
+      "download_bytes": 649377414,
+      "download_mb": 619.3,
+      "weights_bytes": 633442994,
+      "weights_mb": 604.1,
+      "file_count": 11,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 633442994
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 11422654
+        },
+        {
+          "name": "vocab.json",
+          "size": 2776833
+        },
+        {
+          "name": "merges.txt",
+          "size": 1671853
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 49731
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 10219
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1570
+        },
+        {
+          "name": "config.json",
+          "size": 937
+        },
+        {
+          "name": "README.md",
+          "size": 873
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 707
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 613
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/mlx-community/Qwen3-0.6B-8bit"
+    },
+    "mlx-community/SmolLM-135M-Instruct-4bit": {
+      "model_id": "mlx-community/SmolLM-135M-Instruct-4bit",
+      "sha": "642e06afe3fab57fd6cc518637c471af0a569e1e",
+      "last_modified": "2024-07-16T21:06:40.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 5447,
+      "likes": 6,
+      "download_bytes": 79216192,
+      "download_mb": 75.5,
+      "weights_bytes": 75789919,
+      "weights_mb": 72.3,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 75789919
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2104556
+        },
+        {
+          "name": "vocab.json",
+          "size": 800662
+        },
+        {
+          "name": "merges.txt",
+          "size": 466391
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 48978
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 3590
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 803
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 655
+        },
+        {
+          "name": "README.md",
+          "size": 638
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/SmolLM-135M-Instruct-4bit"
+    },
+    "mlx-community/SmolLM2-135M-Instruct-4bit": {
+      "model_id": "mlx-community/SmolLM2-135M-Instruct-4bit",
+      "error": "HTTP 401"
+    },
+    "mlx-community/SmolLM2-360M-Instruct-4bit": {
+      "model_id": "mlx-community/SmolLM2-360M-Instruct-4bit",
+      "error": "HTTP 401"
+    },
+    "mlx-community/TinyLlama-1.1B-Chat-v1.0-4bit": {
+      "model_id": "mlx-community/TinyLlama-1.1B-Chat-v1.0-4bit",
+      "sha": "01a708812690b4685ab18e3b0a27848f92c50746",
+      "last_modified": "2024-01-05T21:25:48.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "mlx",
+      "license_tags": [
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 180,
+      "likes": 2,
+      "download_bytes": 715022550,
+      "download_mb": 681.9,
+      "weights_bytes": 713174693,
+      "weights_mb": 680.1,
+      "file_count": 7,
+      "files": [
+        {
+          "name": "weights.00.safetensors",
+          "size": 713174693
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 1842767
+        },
+        {
+          "name": "config.json",
+          "size": 2301
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1340
+        },
+        {
+          "name": "README.md",
+          "size": 898
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 551
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/mlx-community/TinyLlama-1.1B-Chat-v1.0-4bit"
+    },
+    "mlx-community/gemma-3-270m-it-4bit": {
+      "model_id": "mlx-community/gemma-3-270m-it-4bit",
+      "sha": "ff1143e3a10547c9f2129e94ca37059b096b23f4",
+      "last_modified": "2025-08-14T19:34:14.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "gemma"
+      ],
+      "base_model_tags": [
+        "google/gemma-3-270m-it",
+        "quantized:google/gemma-3-270m-it"
+      ],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 1264,
+      "likes": 10,
+      "download_bytes": 190208344,
+      "download_mb": 181.4,
+      "weights_bytes": 150939130,
+      "weights_mb": 143.9,
+      "file_count": 12,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 150939130
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 33384568
+        },
+        {
+          "name": "tokenizer.model",
+          "size": 4689074
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1155373
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 34944
+        },
+        {
+          "name": "config.json",
+          "size": 1653
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1570
+        },
+        {
+          "name": "chat_template.jinja",
+          "size": 1532
+        },
+        {
+          "name": "README.md",
+          "size": 1200
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 662
+        },
+        {
+          "name": "generation_config.json",
+          "size": 173
+        },
+        {
+          "name": "added_tokens.json",
+          "size": 35
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/gemma-3-270m-it-4bit"
+    },
+    "mlx-community/gemma-3-270m-it-qat-4bit": {
+      "model_id": "mlx-community/gemma-3-270m-it-qat-4bit",
+      "sha": "71fb198f2649a80259f9f5fe878dd9dd25638a65",
+      "last_modified": "2025-08-09T21:47:23.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "gemma"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [
+        "4-bit"
+      ],
+      "downloads": 75,
+      "likes": 1,
+      "download_bytes": 279892124,
+      "download_mb": 266.9,
+      "weights_bytes": 245312212,
+      "weights_mb": 233.9,
+      "file_count": 10,
+      "files": [
+        {
+          "name": "model.safetensors",
+          "size": 245312212
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 33384568
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1155373
+        },
+        {
+          "name": "model.safetensors.index.json",
+          "size": 35085
+        },
+        {
+          "name": "config.json",
+          "size": 1653
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1570
+        },
+        {
+          "name": "chat_template.jinja",
+          "size": 1532
+        },
+        {
+          "name": "README.md",
+          "size": 866
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 662
+        },
+        {
+          "name": "generation_config.json",
+          "size": 173
+        }
+      ],
+      "under_500mb_download": true,
+      "url": "https://huggingface.co/mlx-community/gemma-3-270m-it-qat-4bit"
+    },
+    "mlx-community/granite-3.0-1b-a400m-instruct-4bit": {
+      "model_id": "mlx-community/granite-3.0-1b-a400m-instruct-4bit",
+      "error": "HTTP 401"
+    },
+    "mlx-community/phi-2-4bit": {
+      "model_id": "mlx-community/phi-2-4bit",
+      "sha": "b78af11c39efc259aa0e26f5e0c39d2dad75df44",
+      "last_modified": "2023-12-22T08:00:02.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "mlx",
+      "license_tags": [
+        "other"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 64,
+      "likes": 5,
+      "download_bytes": 1753539030,
+      "download_mb": 1672.3,
+      "weights_bytes": 0,
+      "weights_mb": 0.0,
+      "file_count": 4,
+      "files": [
+        {
+          "name": "weights.npz",
+          "size": 1753534590
+        },
+        {
+          "name": "README.md",
+          "size": 4339
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "name": "config.json",
+          "size": 101
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/mlx-community/phi-2-4bit"
+    },
+    "oliverguhr/fullstop-punctuation-multilang-base": {
+      "model_id": "oliverguhr/fullstop-punctuation-multilang-base",
+      "error": "HTTP 401"
+    },
+    "oliverguhr/spelling-correction-english-base": {
+      "model_id": "oliverguhr/spelling-correction-english-base",
+      "sha": "0e3958355a09d2816ed2701fdc2f4471d46c320e",
+      "last_modified": "2023-12-18T08:46:53.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "mit"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 4047,
+      "likes": 77,
+      "download_bytes": 3040686229,
+      "download_mb": 2899.8,
+      "weights_bytes": 3033491044,
+      "weights_mb": 2893.0,
+      "file_count": 30,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 557969145
+        },
+        {
+          "name": "model.safetensors",
+          "size": 557912616
+        },
+        {
+          "name": "onnx/decoder_model_merged.onnx",
+          "size": 539563255
+        },
+        {
+          "name": "onnx/decoder_model.onnx",
+          "size": 539316749
+        },
+        {
+          "name": "onnx/decoder_with_past_model.onnx",
+          "size": 510925782
+        },
+        {
+          "name": "onnx/encoder_model.onnx",
+          "size": 327800186
+        },
+        {
+          "name": "onnx/tokenizer.json",
+          "size": 2108718
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2108690
+        },
+        {
+          "name": "onnx/vocab.json",
+          "size": 798293
+        },
+        {
+          "name": "vocab.json",
+          "size": 798293
+        },
+        {
+          "name": "merges.txt",
+          "size": 456356
+        },
+        {
+          "name": "onnx/merges.txt",
+          "size": 456318
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/oliverguhr/spelling-correction-english-base"
+    },
+    "oliverguhr/spelling-correction-multilingual-base": {
+      "model_id": "oliverguhr/spelling-correction-multilingual-base",
+      "sha": "033a56caf0e7b6dc0033e88ec146b89ccb22e951",
+      "last_modified": "2023-07-07T08:00:15.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "mit"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 122,
+      "likes": 11,
+      "download_bytes": 1984974127,
+      "download_mb": 1893.0,
+      "weights_bytes": 1980413592,
+      "weights_mb": 1888.7,
+      "file_count": 18,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 990236853
+        },
+        {
+          "name": "model.safetensors",
+          "size": 990173032
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2422262
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "runs/Apr14_08-56-57_ipc13112/events.out.tfevents.1681462874.ipc13112.159650.0",
+          "size": 756260
+        },
+        {
+          "name": "trainer_state.json",
+          "size": 575290
+        },
+        {
+          "name": "runs/Apr14_08-56-57_ipc13112/1681462874.0186284/events.out.tfevents.1681462874.ipc13112.159650.1",
+          "size": 6114
+        },
+        {
+          "name": "training_args.bin",
+          "size": 3707
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 2496
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 2201
+        },
+        {
+          "name": "config.json",
+          "size": 1528
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1519
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/oliverguhr/spelling-correction-multilingual-base"
+    },
+    "prithivida/grammar_error_correcter_v1": {
+      "model_id": "prithivida/grammar_error_correcter_v1",
+      "sha": "28f92ee33c2512814c22268b056a725364dae143",
+      "last_modified": "2021-07-04T10:44:31.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 6140,
+      "likes": 41,
+      "download_bytes": 893917683,
+      "download_mb": 852.5,
+      "weights_bytes": 891733358,
+      "weights_mb": 850.4,
+      "file_count": 9,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 891730879
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 1387488
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "training_args.bin",
+          "size": 2479
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1889
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 1786
+        },
+        {
+          "name": "config.json",
+          "size": 1388
+        },
+        {
+          "name": ".gitattributes",
+          "size": 690
+        },
+        {
+          "name": "README.md",
+          "size": 118
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/prithivida/grammar_error_correcter_v1"
+    },
+    "pszemraj/bart-base-grammar-synthesis": {
+      "model_id": "pszemraj/bart-base-grammar-synthesis",
+      "sha": "c11f2f68112a8699e253814fa334c26e03c34259",
+      "last_modified": "2025-12-29T03:43:43.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": "text-generation",
+      "library_name": "transformers",
+      "license_tags": [
+        "cc-by-nc-sa-4.0",
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 535,
+      "likes": 2,
+      "download_bytes": 1832124832,
+      "download_mb": 1747.3,
+      "weights_bytes": 1828583302,
+      "weights_mb": 1743.9,
+      "file_count": 17,
+      "files": [
+        {
+          "name": "model.onnx",
+          "size": 712695682
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 557971229
+        },
+        {
+          "name": "model.safetensors",
+          "size": 557912620
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2108619
+        },
+        {
+          "name": "vocab.json",
+          "size": 798293
+        },
+        {
+          "name": "merges.txt",
+          "size": 456318
+        },
+        {
+          "name": "trainer_state.json",
+          "size": 170286
+        },
+        {
+          "name": "README.md",
+          "size": 5346
+        },
+        {
+          "name": "training_args.bin",
+          "size": 3771
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1477
+        },
+        {
+          "name": "config.json",
+          "size": 1312
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 349
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/pszemraj/bart-base-grammar-synthesis"
+    },
+    "pszemraj/flan-t5-base-grammar-synthesis": {
+      "model_id": "pszemraj/flan-t5-base-grammar-synthesis",
+      "error": "HTTP 401"
+    },
+    "pszemraj/flan-t5-base-grammar-synthesis-2m": {
+      "model_id": "pszemraj/flan-t5-base-grammar-synthesis-2m",
+      "error": "HTTP 401"
+    },
+    "pszemraj/flan-t5-large-grammar-synthesis": {
+      "model_id": "pszemraj/flan-t5-large-grammar-synthesis",
+      "sha": "924f44b5b7403d0727880a72f45714f0a70379a0",
+      "last_modified": "2025-12-29T03:41:10.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "cc-by-nc-sa-4.0",
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 1971,
+      "likes": 94,
+      "download_bytes": 10046323887,
+      "download_mb": 9580.9,
+      "weights_bytes": 6910999097,
+      "weights_mb": 6590.8,
+      "file_count": 447,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 3132793669
+        },
+        {
+          "name": "model.safetensors",
+          "size": 3132668808
+        },
+        {
+          "name": "ggml-model-Q6_K.gguf",
+          "size": 643881600
+        },
+        {
+          "name": "onnx/onnx__MatMul_8334",
+          "size": 131596288
+        },
+        {
+          "name": "onnx/shared.weight",
+          "size": 131596288
+        },
+        {
+          "name": "onnx/onnx__MatMul_7120",
+          "size": 11534336
+        },
+        {
+          "name": "onnx/onnx__MatMul_7121",
+          "size": 11534336
+        },
+        {
+          "name": "onnx/onnx__MatMul_7122",
+          "size": 11534336
+        },
+        {
+          "name": "onnx/onnx__MatMul_7138",
+          "size": 11534336
+        },
+        {
+          "name": "onnx/onnx__MatMul_7139",
+          "size": 11534336
+        },
+        {
+          "name": "onnx/onnx__MatMul_7140",
+          "size": 11534336
+        },
+        {
+          "name": "onnx/onnx__MatMul_7156",
+          "size": 11534336
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/pszemraj/flan-t5-large-grammar-synthesis"
+    },
+    "pszemraj/flan-t5-small-grammar-synthesis": {
+      "model_id": "pszemraj/flan-t5-small-grammar-synthesis",
+      "error": "HTTP 401"
+    },
+    "pszemraj/grammar-synthesis-base": {
+      "model_id": "pszemraj/grammar-synthesis-base",
+      "sha": "c9cd9ddf45f8a531ea1b51f71edda5573b1494bb",
+      "last_modified": "2025-12-29T03:39:38.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "cc-by-nc-sa-4.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 110,
+      "likes": 4,
+      "download_bytes": 1983981609,
+      "download_mb": 1892.1,
+      "weights_bytes": 1980697604,
+      "weights_mb": 1888.9,
+      "file_count": 15,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 990347691
+        },
+        {
+          "name": "model.safetensors",
+          "size": 990345066
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2422431
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "trainer_state.json",
+          "size": 21302
+        },
+        {
+          "name": "zero_to_fp32.py",
+          "size": 18857
+        },
+        {
+          "name": "rng_state.pth",
+          "size": 14503
+        },
+        {
+          "name": "README.md",
+          "size": 6523
+        },
+        {
+          "name": "training_args.bin",
+          "size": 4847
+        },
+        {
+          "name": "grammar-synthesis-base-V1-ft3-jflAUG-v5_training_metadata.json",
+          "size": 3053
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 2573
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 2201
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/pszemraj/grammar-synthesis-base"
+    },
+    "pszemraj/grammar-synthesis-small": {
+      "model_id": "pszemraj/grammar-synthesis-small",
+      "sha": "87b056e0099386da1355a3b80e51e59e9faf1219",
+      "last_modified": "2025-12-29T03:39:24.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "cc-by-nc-sa-4.0",
+        "apache-2.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 434,
+      "likes": 12,
+      "download_bytes": 927277967,
+      "download_mb": 884.3,
+      "weights_bytes": 923963140,
+      "weights_mb": 881.2,
+      "file_count": 12,
+      "files": [
+        {
+          "name": "model.onnx",
+          "size": 308227123
+        },
+        {
+          "name": "pytorch_model.bin",
+          "size": 307868971
+        },
+        {
+          "name": "model.safetensors",
+          "size": 307867046
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 2422431
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "trainer_state.json",
+          "size": 85127
+        },
+        {
+          "name": "README.md",
+          "size": 6879
+        },
+        {
+          "name": "grammar-synthesis-small-WIP-ft3-jflAUG-v5_training_metadata.json",
+          "size": 3067
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 2575
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 2201
+        },
+        {
+          "name": ".gitattributes",
+          "size": 1227
+        },
+        {
+          "name": "config.json",
+          "size": 891
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/pszemraj/grammar-synthesis-small"
+    },
+    "seduerr/grammar-error-corrector": {
+      "model_id": "seduerr/grammar-error-corrector",
+      "error": "HTTP 401"
+    },
+    "team-watchdog/t5-base-grammar-correction": {
+      "model_id": "team-watchdog/t5-base-grammar-correction",
+      "error": "HTTP 401"
+    },
+    "vennify/t5-base-grammar-correction": {
+      "model_id": "vennify/t5-base-grammar-correction",
+      "sha": "9e4a09d21dca1072a69302df9261289d03c3ed78",
+      "last_modified": "2022-01-14T16:35:23.000Z",
+      "gated": false,
+      "disabled": false,
+      "private": false,
+      "pipeline_tag": null,
+      "library_name": "transformers",
+      "license_tags": [
+        "cc-by-nc-sa-4.0"
+      ],
+      "base_model_tags": [],
+      "quant_tags": [],
+      "downloads": 340124,
+      "likes": 184,
+      "download_bytes": 893916037,
+      "download_mb": 852.5,
+      "weights_bytes": 891730879,
+      "weights_mb": 850.4,
+      "file_count": 8,
+      "files": [
+        {
+          "name": "pytorch_model.bin",
+          "size": 891730879
+        },
+        {
+          "name": "tokenizer.json",
+          "size": 1387438
+        },
+        {
+          "name": "spiece.model",
+          "size": 791656
+        },
+        {
+          "name": "tokenizer_config.json",
+          "size": 1923
+        },
+        {
+          "name": "special_tokens_map.json",
+          "size": 1786
+        },
+        {
+          "name": "config.json",
+          "size": 1416
+        },
+        {
+          "name": "README.md",
+          "size": 939
+        },
+        {
+          "name": ".gitattributes",
+          "size": 737
+        }
+      ],
+      "under_500mb_download": false,
+      "url": "https://huggingface.co/vennify/t5-base-grammar-correction"
+    }
+  },
+  "searches": {
+    "grammar correction": [
+      {
+        "model_id": "vennify/t5-base-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 340124,
+        "likes": 184
+      },
+      {
+        "model_id": "RichardErkhov/mzbac_-_Llama-3-8B-grammar-correction-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 1712,
+        "likes": 1
+      },
+      {
+        "model_id": "afrideva/Phi-3-mini-4k-grammar-correction-GGUF",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 776,
+        "likes": 1
+      },
+      {
+        "model_id": "visheratin/t5-efficient-tiny-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 749,
+        "likes": 11
+      },
+      {
+        "model_id": "thealper2/t5-efficient-base-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 588,
+        "likes": 1
+      },
+      {
+        "model_id": "RichardErkhov/mzbac_-_Phi-3-mini-4k-grammar-correction-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 513,
+        "likes": 0
+      },
+      {
+        "model_id": "visheratin/t5-efficient-mini-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 468,
+        "likes": 8
+      },
+      {
+        "model_id": "Xenova/t5-base-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 390,
+        "likes": 1
+      },
+      {
+        "model_id": "featherless-ai-quants/mzbac-Llama-3-8B-grammar-correction-GGUF",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 292,
+        "likes": 0
+      },
+      {
+        "model_id": "onnx-community/t5-base-grammar-correction-ONNX",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 269,
+        "likes": 0
+      },
+      {
+        "model_id": "redromnon/LFM2-700M-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 215,
+        "likes": 0
+      },
+      {
+        "model_id": "aiassociates/t5-small-grammar-correction-german",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 172,
+        "likes": 7
+      },
+      {
+        "model_id": "Ashishkr/grammar_correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 128,
+        "likes": 8
+      },
+      {
+        "model_id": "anmol-unitmole/grammar-correction-flan-t5-base",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 126,
+        "likes": 0
+      },
+      {
+        "model_id": "hassaanik/grammar-correction-model",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 117,
+        "likes": 7
+      },
+      {
+        "model_id": "Felladrin/gguf-t5-base-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 86,
+        "likes": 2
+      },
+      {
+        "model_id": "xhimanshuz/flan-t5-small-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 39,
+        "likes": 1
+      },
+      {
+        "model_id": "TonyRaju/visheratin-t5-tiny-grammar-correction-onnx-int8",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 38,
+        "likes": 0
+      },
+      {
+        "model_id": "Tegence/grammar-correction-model",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 35,
+        "likes": 0
+      },
+      {
+        "model_id": "AventIQ-AI/T5-small-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 33,
+        "likes": 5
+      },
+      {
+        "model_id": "xhimanshuz/SmolLM2-135M-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 32,
+        "likes": 0
+      },
+      {
+        "model_id": "thenHung/english-grammar-error-correction-t5-seq2seq",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 28,
+        "likes": 2
+      },
+      {
+        "model_id": "TonyRaju/visheratin-t5-mini-grammar-correction-onnx-int8",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 24,
+        "likes": 0
+      },
+      {
+        "model_id": "mzbac/Phi-3-mini-4k-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 23,
+        "likes": 2
+      },
+      {
+        "model_id": "MdSourav76046/t5-base-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 23,
+        "likes": 0
+      },
+      {
+        "model_id": "thenewth/Qwen1.5-0.5B-Chat-GrammarCorrection",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 21,
+        "likes": 0
+      },
+      {
+        "model_id": "Jayaprakash/Grammar_correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 20,
+        "likes": 0
+      },
+      {
+        "model_id": "isaacjeffersonlee/distilgpt2-for-legal-grammar-error-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 19,
+        "likes": 1
+      },
+      {
+        "model_id": "amanuelyh/grammar_correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 19,
+        "likes": 0
+      },
+      {
+        "model_id": "Justin73/grammar-correction-modelv5",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 19,
+        "likes": 0
+      },
+      {
+        "model_id": "TonyRaju/aventiq-t5-small-grammar-correction-onnx-int8",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 19,
+        "likes": 0
+      },
+      {
+        "model_id": "cabir40/t5-dutch-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 18,
+        "likes": 0
+      },
+      {
+        "model_id": "mzbac/Llama-3-8B-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "llama3"
+        ],
+        "downloads": 17,
+        "likes": 2
+      },
+      {
+        "model_id": "mzbac/Qwen2-7B-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 17,
+        "likes": 0
+      },
+      {
+        "model_id": "Justin73/grammar-correction-model-grammarly",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 17,
+        "likes": 0
+      },
+      {
+        "model_id": "jasonlau/en-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 16,
+        "likes": 3
+      },
+      {
+        "model_id": "cabir40/t5-dutch-invers-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 14,
+        "likes": 0
+      },
+      {
+        "model_id": "hafidikhsan/happy-transformer-t5-base-grammar-correction-ep-v1",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 13,
+        "likes": 0
+      },
+      {
+        "model_id": "mzbac/gemma-2-9b-grammar-correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 13,
+        "likes": 0
+      },
+      {
+        "model_id": "danrdoran/flan-t5-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 13,
+        "likes": 0
+      }
+    ],
+    "grammatical error correction": [
+      {
+        "model_id": "mradermacher/Llama-3.1-8B-Instruct-Grammatical-Error-Correction-2-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 161,
+        "likes": 0
+      },
+      {
+        "model_id": "leslyarun/grammatical-error-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 95,
+        "likes": 2
+      },
+      {
+        "model_id": "abhinavsarkar/Google-T5-base-Grammatical_Error_Correction-Finetuned-C4-200M-550k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 38,
+        "likes": 1
+      },
+      {
+        "model_id": "abhinavsarkar/Google-T5-Large-Grammatical_Error_Correction-Finetuned-C4-200M-1M",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 18,
+        "likes": 0
+      },
+      {
+        "model_id": "johnrhimawan/Llama-3.1-8B-Instruct-Grammatical-Error-Correction-2",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 13,
+        "likes": 0
+      },
+      {
+        "model_id": "leslyarun/grammatical-error-correction-quantized",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 11,
+        "likes": 1
+      },
+      {
+        "model_id": "johnrhimawan/Llama-3.1-8B-Instruct-Grammatical-Error-Correction",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 9,
+        "likes": 0
+      },
+      {
+        "model_id": "christopher-ml/flan-t5-xl-grammatical-error-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 9,
+        "likes": 0
+      },
+      {
+        "model_id": "DriveMyScream/Grammatical_Error_Correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 7,
+        "likes": 0
+      },
+      {
+        "model_id": "adithya12/grammatical_error_correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 6,
+        "likes": 1
+      }
+    ],
+    "gec": [
+      {
+        "model_id": "gotutiyan/gector-deberta-large-5k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 9655,
+        "likes": 3
+      },
+      {
+        "model_id": "gotutiyan/gector-roberta-base-5k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 8099,
+        "likes": 0
+      },
+      {
+        "model_id": "geceff/Wan2.2-Custom-Models-GGUF",
+        "pipeline_tag": "image-to-video",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 3231,
+        "likes": 10
+      },
+      {
+        "model_id": "Unbabel/gec-t5_small",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 2882,
+        "likes": 26
+      },
+      {
+        "model_id": "litert-community/Gecko-110m-en",
+        "pipeline_tag": "question-answering",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 2060,
+        "likes": 17
+      },
+      {
+        "model_id": "gecfdo/gemma-4-31B-it-w8a16g128",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 1650,
+        "likes": 0
+      },
+      {
+        "model_id": "geckos/deberta-base-fine-tuned-ner",
+        "pipeline_tag": "token-classification",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 1626,
+        "likes": 2
+      },
+      {
+        "model_id": "mradermacher/Mirza-GEC-Gemma4-E4B-Paraphraser-E3-BF16-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 1048,
+        "likes": 1
+      },
+      {
+        "model_id": "mradermacher/Qwen-Ar-GEC-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 783,
+        "likes": 1
+      },
+      {
+        "model_id": "RichardErkhov/tartuNLP_-_leo-hessianai-7b-p1-llama-errors-p2-GEC-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 746,
+        "likes": 0
+      },
+      {
+        "model_id": "CAMeL-Lab/arabart-qalb14-gec-ged-13",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 654,
+        "likes": 3
+      },
+      {
+        "model_id": "JonaWhisper/jonawhisper-gec-t5-small-onnx",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 608,
+        "likes": 0
+      },
+      {
+        "model_id": "Soyoung97/gec_kr",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 600,
+        "likes": 4
+      },
+      {
+        "model_id": "gotutiyan/gector-roberta-large-5k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 545,
+        "likes": 1
+      },
+      {
+        "model_id": "mradermacher/Gecko-7B-v0.1-i1-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 493,
+        "likes": 1
+      },
+      {
+        "model_id": "SkitCon/gec-spanish-BARTO-SYNTHETIC",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 488,
+        "likes": 1
+      },
+      {
+        "model_id": "geceff/Flux2Klein9B-comfyui",
+        "pipeline_tag": "text-to-image",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 414,
+        "likes": 5
+      },
+      {
+        "model_id": "mradermacher/Gecko-7B-v0.1-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 302,
+        "likes": 1
+      },
+      {
+        "model_id": "mradermacher/Llama-3.1-8B-UA-GEC-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 299,
+        "likes": 0
+      },
+      {
+        "model_id": "Geck018/rules-qa-instruct",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 279,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/ArMistral-GEC-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 264,
+        "likes": 0
+      },
+      {
+        "model_id": "RichardErkhov/ammarnasr_-_SmolLM-135M-GEC-KL-DPO-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 254,
+        "likes": 0
+      },
+      {
+        "model_id": "texdata/t5-sl-medical-gec",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "cc-by-sa-4.0"
+        ],
+        "downloads": 230,
+        "likes": 0
+      },
+      {
+        "model_id": "loqira/Qwen3.5-0.8B-GEC-KAZ-RUS-ENG",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 195,
+        "likes": 4
+      },
+      {
+        "model_id": "mradermacher/Gecko-7B-v0.1-DPO-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 177,
+        "likes": 0
+      },
+      {
+        "model_id": "itzune/gector-eus-v2-onnx",
+        "pipeline_tag": "token-classification",
+        "library_name": null,
+        "license_tags": [
+          "cc-by-sa-4.0"
+        ],
+        "downloads": 165,
+        "likes": 0
+      },
+      {
+        "model_id": "gotutiyan/gector-deberta-base-5k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 163,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/Gecko-7B-v0.1-DPO-i1-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 148,
+        "likes": 0
+      },
+      {
+        "model_id": "alnnahwi/gemma-3-1b-arabic-gec-v1",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "gemma"
+        ],
+        "downloads": 142,
+        "likes": 9
+      },
+      {
+        "model_id": "mradermacher/Turkish-GPT-GEC-v0-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 132,
+        "likes": 0
+      },
+      {
+        "model_id": "gecfdo/gemma-4-31B-it-GGUF_HB16",
+        "pipeline_tag": "image-text-to-text",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 123,
+        "likes": 1
+      },
+      {
+        "model_id": "gotutiyan/gector-xlnet-base-cased-5k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 122,
+        "likes": 1
+      },
+      {
+        "model_id": "tartuNLP/Llammas-base-p1-GPT-4o-human-error-mix-paragraph-GEC",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "llama2"
+        ],
+        "downloads": 122,
+        "likes": 0
+      },
+      {
+        "model_id": "gotutiyan/gec-t5-base-clang8",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 120,
+        "likes": 0
+      },
+      {
+        "model_id": "Ro551/mbart-large-50-GEC-spanish-merged",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 118,
+        "likes": 0
+      },
+      {
+        "model_id": "AlexeySorokin/GECExplanation-4B-sft-stage1-March2026",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 109,
+        "likes": 0
+      },
+      {
+        "model_id": "ufal/transformer-base-geccc-mate",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 107,
+        "likes": 0
+      },
+      {
+        "model_id": "gotutiyan/gector-xlnet-large-cased-5k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 98,
+        "likes": 0
+      },
+      {
+        "model_id": "echos-keeper/gemma-3-1b-arabic-gec-v1-Q5_K_M-GGUF",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "gemma"
+        ],
+        "downloads": 91,
+        "likes": 1
+      },
+      {
+        "model_id": "Rucha-Ambaliya/mt5-small-indic-gec",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 86,
+        "likes": 0
+      }
+    ],
+    "grammar synthesis": [
+      {
+        "model_id": "pszemraj/flan-t5-large-grammar-synthesis",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 1971,
+        "likes": 94
+      },
+      {
+        "model_id": "pszemraj/bart-base-grammar-synthesis",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 535,
+        "likes": 2
+      },
+      {
+        "model_id": "pszemraj/grammar-synthesis-small",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 434,
+        "likes": 12
+      },
+      {
+        "model_id": "mradermacher/grammar-synthesis-large-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 342,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/grammar-synthesis-base-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 339,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/grammar-synthesis-small-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 232,
+        "likes": 0
+      },
+      {
+        "model_id": "Xenova/grammar-synthesis-small",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 227,
+        "likes": 3
+      },
+      {
+        "model_id": "pszemraj/flan-t5-xl-grammar-synthesis",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 217,
+        "likes": 10
+      },
+      {
+        "model_id": "mradermacher/flan-t5-large-grammar-synthesis-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 214,
+        "likes": 0
+      },
+      {
+        "model_id": "pszemraj/grammar-synthesis-base",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 110,
+        "likes": 4
+      },
+      {
+        "model_id": "pszemraj/flan-t5-large-grammar-synthesis-gguf",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 98,
+        "likes": 2
+      },
+      {
+        "model_id": "Sajid030/t5-base-grammar-synthesis",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 25,
+        "likes": 1
+      },
+      {
+        "model_id": "onnx-community/grammar-synthesis-small-ONNX",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 17,
+        "likes": 1
+      },
+      {
+        "model_id": "MOKSHm/t5-base-grammar-synthesis",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 15,
+        "likes": 0
+      },
+      {
+        "model_id": "pszemraj/grammar-synthesis-large",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 14,
+        "likes": 2
+      },
+      {
+        "model_id": "brumda/pszemraj-bart-base-grammar-synthesis-finetuned",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 8,
+        "likes": 0
+      },
+      {
+        "model_id": "TonyRaju/pszemraj-grammar-synthesis-small-onnx-int8",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 8,
+        "likes": 0
+      },
+      {
+        "model_id": "ailegends/grammar-flan-t5-large-grammar-synthesis",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 4,
+        "likes": 0
+      }
+    ],
+    "proofreading": [
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v5",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 134,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v10",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 133,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v7",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 132,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v9",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 128,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v11",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 127,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v3",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 126,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-SeaLLM3-7B-Chat-3090-v4",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 124,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-version-1-ds",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 10,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-hl-v1",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 8,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/Proof-reading-test",
+        "pipeline_tag": "token-classification",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 7,
+        "likes": 0
+      },
+      {
+        "model_id": "Tippawan/proof-reading-version-1",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 3,
+        "likes": 0
+      },
+      {
+        "model_id": "VerbACxSS/sempl-it-proofreading-bnb",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "VerbACxSS/sempl-it-proofreading-awq",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "VerbACxSS/sempl-it-v3-proofreading-awq",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 0,
+        "likes": 0
+      }
+    ],
+    "spelling correction": [
+      {
+        "model_id": "oliverguhr/spelling-correction-english-base",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 4047,
+        "likes": 77
+      },
+      {
+        "model_id": "oliverguhr/spelling-correction-german-base",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 230,
+        "likes": 17
+      },
+      {
+        "model_id": "karakastarik/bert-base-turkish-128k-uncased-spelling-correction",
+        "pipeline_tag": "sentence-similarity",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 122,
+        "likes": 2
+      },
+      {
+        "model_id": "oliverguhr/spelling-correction-multilingual-base",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 122,
+        "likes": 11
+      },
+      {
+        "model_id": "karakastarik/all-MiniLM-L6-v2-spelling-correction-large",
+        "pipeline_tag": "sentence-similarity",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 121,
+        "likes": 0
+      },
+      {
+        "model_id": "karakastarik/all-MiniLM-L6-v2-spelling-correction",
+        "pipeline_tag": "sentence-similarity",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 90,
+        "likes": 0
+      },
+      {
+        "model_id": "karakastarik/paraphrase-multilingual-MiniLM-L12-v2-spelling-correction",
+        "pipeline_tag": "sentence-similarity",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 70,
+        "likes": 0
+      },
+      {
+        "model_id": "CodeTed/Chinese_Spelling_Correction_T5",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 53,
+        "likes": 2
+      },
+      {
+        "model_id": "iAmHieu2012/vit5-vietnamese-spelling-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 38,
+        "likes": 0
+      },
+      {
+        "model_id": "SPEAK-PP/mt5-small-si-spelling-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 22,
+        "likes": 0
+      },
+      {
+        "model_id": "ShynBui/Bartpho_spelling_correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 19,
+        "likes": 0
+      },
+      {
+        "model_id": "SPEAK-PP/mt5-small-si-spelling-correction-dataset-synthetic-100k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 18,
+        "likes": 0
+      },
+      {
+        "model_id": "bachthetrollface/bartpho-for-spelling-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 15,
+        "likes": 0
+      },
+      {
+        "model_id": "flozen1981/spelling-correction-german-onnx",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 15,
+        "likes": 0
+      },
+      {
+        "model_id": "ivanzzz/vit5-vietnamese-spelling-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 12,
+        "likes": 0
+      },
+      {
+        "model_id": "nluai/correction-spelling-vi",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 11,
+        "likes": 2
+      },
+      {
+        "model_id": "Vinctilus/onnx-oliverguhr-spelling-correction-german-base",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 10,
+        "likes": 0
+      },
+      {
+        "model_id": "SPEAK-PP/mt5-small-si-spelling-correction-dataset-100k",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 10,
+        "likes": 0
+      },
+      {
+        "model_id": "duydattqta13/hanco-spelling-correction_ver_1_anchi",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 9,
+        "likes": 0
+      },
+      {
+        "model_id": "SPEAK-PP/mbert-sinhala-spelling-correction",
+        "pipeline_tag": "text-classification",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 9,
+        "likes": 0
+      },
+      {
+        "model_id": "HuzaifaQ-12/Urdu_spelling_correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 9,
+        "likes": 0
+      },
+      {
+        "model_id": "DangDecTen/vn-spelling-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 8,
+        "likes": 0
+      },
+      {
+        "model_id": "grantslewis/spelling-correction-english-base-finetuned-places",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 6,
+        "likes": 0
+      },
+      {
+        "model_id": "tarekziade/spelling-correction-english-base",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 6,
+        "likes": 0
+      },
+      {
+        "model_id": "Elalimy/english_spelling_correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 6,
+        "likes": 0
+      },
+      {
+        "model_id": "grantslewis/spelling-correction-english-base-location",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 5,
+        "likes": 2
+      },
+      {
+        "model_id": "grantslewis/spelling-correction-english-base-location-unique-2",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 5,
+        "likes": 5
+      },
+      {
+        "model_id": "grantslewis/spelling-correction-english-base-location-unique-2-2",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 5,
+        "likes": 0
+      },
+      {
+        "model_id": "grantslewis/spelling-correction-english-base-location-unique-2-2-proportional",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 5,
+        "likes": 1
+      },
+      {
+        "model_id": "duydattqta13/hanco-spelling-correction_ver_0",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 5,
+        "likes": 0
+      },
+      {
+        "model_id": "TayyMem/Grammar_Spelling_Correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 4,
+        "likes": 0
+      },
+      {
+        "model_id": "brumda/oliverguhr-spelling-correction-english-base-finetuned",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 4,
+        "likes": 0
+      },
+      {
+        "model_id": "duydattqta13/hanco-spelling-correction_ver_0_anchi",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 4,
+        "likes": 0
+      },
+      {
+        "model_id": "TunahanGokcimen/my_spelling_correction_model",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 3,
+        "likes": 0
+      },
+      {
+        "model_id": "huseinzol05/spelling-correction-tiny-t5",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "huseinzol05/spelling-correction-super-tiny-t5-quantized",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "huseinzol05/spelling-correction-small-t5",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "huseinzol05/spelling-correction-tiny-t5-quantized",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "huseinzol05/spelling-correction-super-tiny-t5",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "huseinzol05/spelling-correction-small-t5-quantized",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      }
+    ],
+    "mlx grammar": [
+      {
+        "model_id": "nhe-ai/Mistral-7B-UA-Grammar-GRPO-mlx-4Bit",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 21,
+        "likes": 0
+      },
+      {
+        "model_id": "nhe-ai/Mistral-7B-UA-Grammar-GRPO-mlx-3Bit",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 20,
+        "likes": 0
+      }
+    ],
+    "gguf grammar": [
+      {
+        "model_id": "mradermacher/SmolLM-135M-GrammarSFT-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 2233,
+        "likes": 1
+      },
+      {
+        "model_id": "RichardErkhov/mzbac_-_Llama-3-8B-grammar-correction-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 1712,
+        "likes": 1
+      },
+      {
+        "model_id": "afrideva/Phi-3-mini-4k-grammar-correction-GGUF",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 776,
+        "likes": 1
+      },
+      {
+        "model_id": "RichardErkhov/mzbac_-_Phi-3-mini-4k-grammar-correction-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 513,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/GrammarCoder-7B-Base-i1-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 419,
+        "likes": 0
+      },
+      {
+        "model_id": "RichardErkhov/yonas_-_SmolLM-135M-Instruct-grammarly-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 374,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/grammar-synthesis-large-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 342,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/grammar-synthesis-base-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0"
+        ],
+        "downloads": 339,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/Qwen3-0.6B-Dakota-Grammar-RL-GGUF",
+        "pipeline_tag": "reinforcement-learning",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 337,
+        "likes": 0
+      },
+      {
+        "model_id": "RichardErkhov/NobleMathews_-_SmolLM-135M-GrammarSFT-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 332,
+        "likes": 0
+      },
+      {
+        "model_id": "featherless-ai-quants/mzbac-Llama-3-8B-grammar-correction-GGUF",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 292,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/t5-base-grammar-checker-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "mit"
+        ],
+        "downloads": 267,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/t5-base-grammar-corrector-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 254,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/grammar-synthesis-small-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 232,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/flan-t5-large-grammar-synthesis-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "cc-by-nc-sa-4.0",
+          "apache-2.0"
+        ],
+        "downloads": 214,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/Mistral-7B-UA-Grammar-GRPO-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 198,
+        "likes": 2
+      },
+      {
+        "model_id": "mradermacher/GrammarCoder-7B-Base-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 168,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/GrammarCoder-1.3B-Base-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 166,
+        "likes": 0
+      },
+      {
+        "model_id": "mradermacher/GrammarCoder-1.5B-Base-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 155,
+        "likes": 0
+      },
+      {
+        "model_id": "csabakecskemeti/thedanmaks.Mistral-7B-UA-Grammar-GRPO-GGUF",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 100,
+        "likes": 0
+      },
+      {
+        "model_id": "pszemraj/flan-t5-large-grammar-synthesis-gguf",
+        "pipeline_tag": "text-generation",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 98,
+        "likes": 2
+      },
+      {
+        "model_id": "Felladrin/gguf-t5-base-grammar-correction",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 86,
+        "likes": 2
+      },
+      {
+        "model_id": "mradermacher/SmolLM-135M-GrammarSFT-DPO-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 78,
+        "likes": 0
+      },
+      {
+        "model_id": "maddes8cht/mzbac-falcon-7b-instruct-grammar-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 68,
+        "likes": 1
+      },
+      {
+        "model_id": "tensorblock/SmolLM-135M-GrammarSFT-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 37,
+        "likes": 0
+      },
+      {
+        "model_id": "alimpfard/gemma-4-12b-ft-grammar-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 17,
+        "likes": 0
+      },
+      {
+        "model_id": "alimpfard/meta-llama-3.1-8b-ft-grammar-gguf",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 15,
+        "likes": 0
+      },
+      {
+        "model_id": "Maeli-k/mistral-lora-128-guarani-grammar-instruct-F16-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 13,
+        "likes": 0
+      },
+      {
+        "model_id": "Maeli-k/mistral-lora-128-guarani-grammar-instruct-Q8_0-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 7,
+        "likes": 0
+      },
+      {
+        "model_id": "Maeli-k/llama-lora-64-guarani-grammar-instruct-Q8_0-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 7,
+        "likes": 0
+      },
+      {
+        "model_id": "Knopochnik/GrammarCoder-1.5B-Instruct-Q8_0-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 6,
+        "likes": 0
+      },
+      {
+        "model_id": "Maeli-k/qwen-lora-64-guarani-grammar-instruct-Q8_0-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 6,
+        "likes": 0
+      },
+      {
+        "model_id": "hartular/roLlama3-Instruct-GrammarBinary-36DB-EP4-1per-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 5,
+        "likes": 0
+      },
+      {
+        "model_id": "Maeli-k/Mistral-7B-Instruct-v0.3-r-128-lora-128-guarani-grammar-fewshot-instruct-Q8_0-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 4,
+        "likes": 0
+      },
+      {
+        "model_id": "amitvermaphd/grammar_error_correcter_v1-Q4_K_M-GGUF",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 3,
+        "likes": 0
+      }
+    ],
+    "mlx t5": [
+      {
+        "model_id": "Hosstia/AliceAI-T5-35B-A0.6B-MLX-4bit",
+        "pipeline_tag": "translation",
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 641,
+        "likes": 0
+      },
+      {
+        "model_id": "Hosstia/AliceAI-T5-35B-A0.6B-MLX-6bit",
+        "pipeline_tag": "translation",
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 543,
+        "likes": 0
+      },
+      {
+        "model_id": "fuutott/Qwen3.8-Flash-Next-MLX-t5-imatrix-q3down-ple8",
+        "pipeline_tag": "image-text-to-text",
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 368,
+        "likes": 0
+      },
+      {
+        "model_id": "anarh1st47/AliceAI-T5-35B-A0.6B-SFT-v0.1-MLX-4bit",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "apache-2.0"
+        ],
+        "downloads": 128,
+        "likes": 1
+      },
+      {
+        "model_id": "mlx-community/DeepFloyd-t5-v1_1-xxl",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 54,
+        "likes": 0
+      },
+      {
+        "model_id": "mlx-community/flan-t5-base-mlx-4bit",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 16,
+        "likes": 0
+      },
+      {
+        "model_id": "mlx-community/flan-t5-small-mlx-4bit",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 10,
+        "likes": 0
+      },
+      {
+        "model_id": "kunal732/chronos-t5-base-mlx",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 10,
+        "likes": 0
+      },
+      {
+        "model_id": "RichardErkhov/qgallouedec_-_tiny-T5ForConditionalGeneration-mlx",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "RichardErkhov/trl-internal-testing_-_tiny-T5ForConditionalGeneration-mlx",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "RichardErkhov/peft-internal-testing_-_tiny-T5ForConditionalGeneration-mlx",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [],
+        "downloads": 0,
+        "likes": 0
+      },
+      {
+        "model_id": "kaaaaan/t5gemma-sa3-int8-mlx",
+        "pipeline_tag": null,
+        "library_name": null,
+        "license_tags": [
+          "other"
+        ],
+        "downloads": 0,
+        "likes": 1
+      }
+    ]
+  }
+}
