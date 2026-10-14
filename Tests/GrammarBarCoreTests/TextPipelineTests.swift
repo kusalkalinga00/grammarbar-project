@@ -106,8 +106,46 @@ final class ChunkerTests: XCTestCase {
         // v1's plan hardcoded 4096; this pins the measured value.
         XCTAssertEqual(Chunker.appleMeasuredContext, 8192)
         let chunker = Chunker()
-        XCTAssertEqual(chunker.maxCharactersPerChunk, Int(8192 * 0.4) * 4)
-        XCTAssertGreaterThan(chunker.maxCharactersPerChunk, Int(4096 * 0.4) * 4)
+        // The fit figure still comes from the measured context...
+        XCTAssertEqual(chunker.contextDerivedChunkCharacters, Int(8192 * 0.4) * 4)
+        // ...but the budget actually used is capped by measured fidelity, which is lower.
+        XCTAssertEqual(chunker.maxCharactersPerChunk, Chunker.fidelityCharactersPerChunk)
+        XCTAssertLessThan(chunker.maxCharactersPerChunk, chunker.contextDerivedChunkCharacters)
+        // And the fidelity cap is not a magic number: it must sit under the budget that was
+        // measured to drop content (3,276) and at or above the one measured intact (1,636).
+        XCTAssertLessThanOrEqual(Chunker.fidelityCharactersPerChunk, 3_276)
+        XCTAssertGreaterThanOrEqual(Chunker.fidelityCharactersPerChunk, 816)
+        // The measured-clean budget, not a rounded-off guess at it.
+        XCTAssertEqual(Chunker.fidelityCharactersPerChunk, 816)
+    }
+
+    /// The invariant the service depends on: nothing dropped, duplicated or reordered.
+    /// No test asserted this before, which is how the accumulation bug below survived -
+    /// the old paragraph test only checked that a "\n\n" survived *somewhere*.
+    func testExactRoundTripAcrossManyParagraphs() {
+        let text = Self.manyParagraphs(200)   // 22,488 chars: over the 13,104 budget
+        let chunks = Chunker().split(text)
+        XCTAssertGreaterThan(chunks.count, 1)
+        XCTAssertEqual(chunks.map { $0.text + $0.trailing }.joined(), text,
+                       "chunking must be lossless")
+    }
+
+    /// REGRESSION PIN. The chunker used to close a chunk on every paragraph's trailing
+    /// whitespace, so it never accumulated. A 15,188-character document that fits in TWO
+    /// chunks of the 13,104 budget produced **59** - one per paragraph - and made 59 engine
+    /// calls, measured at 55 seconds.
+    ///
+    /// The old budget test could not catch it: its input was 12,800 characters, *below* the
+    /// budget, so `split` returned a single chunk and the accumulation loop never ran.
+    func testManyParagraphsAccumulateIntoFewChunks() {
+        let chunker = Chunker()
+        let chunks = chunker.split(Self.manyParagraphs(200))
+        XCTAssertGreaterThan(chunks.count, 1, "200 paragraphs must not fit in one chunk")
+        // The bug this pins produced one chunk PER PARAGRAPH (200). Correct accumulation
+        // gives 50 here, because the paragraph-break-fill rule takes a boundary at half a
+        // budget and these paragraphs are small. 100 sits clear of both.
+        XCTAssertLessThan(chunks.count, 100,
+                          "chunks are not accumulating - this is one engine call per paragraph")
     }
 
     func testParagraphBreaksSurviveReassembly() {
@@ -117,15 +155,30 @@ final class ChunkerTests: XCTestCase {
         let chunker = Chunker()
         let chunks = chunker.split(text)
         XCTAssertGreaterThan(chunks.count, 1)
-        XCTAssertTrue(chunks.map { $0.text }.joined().contains("grammar") )
-        XCTAssertTrue(chunks.contains { $0.trailing == "\n\n" }, "paragraph separator must be preserved")
+        XCTAssertEqual(chunks.map { $0.text + $0.trailing }.joined(), text)
+        XCTAssertTrue(chunks.map { $0.text + $0.trailing }.joined().contains("\n\n"),
+                      "paragraph separator must be preserved")
     }
 
     func testEveryChunkRespectsBudget() {
-        let text = String(repeating: "Alpha beta gamma delta epsilon. ", count: 400)
+        // NOTE: this input must exceed maxCharactersPerChunk or the test only ever inspects
+        // a single chunk and proves nothing. It used to be 12,800 characters - under the
+        // 13,104 budget - which is exactly the hole the regression above fell through.
+        let text = String(repeating: "Alpha beta gamma delta epsilon. ", count: 900)  // 32,400
         let chunker = Chunker()
-        for chunk in chunker.split(text) {
+        let chunks = chunker.split(text)
+        XCTAssertGreaterThan(chunks.count, 1, "input must be over budget for this to mean anything")
+        for chunk in chunks {
             XCTAssertLessThanOrEqual(chunk.text.count, chunker.maxCharactersPerChunk)
+        }
+    }
+
+    /// Chunk text is what the engine is asked to correct, so it should end on a visible
+    /// character; whitespace rides in `trailing` and is restored verbatim.
+    func testChunkTextNeverEndsInWhitespace() {
+        for chunk in Chunker().split(Self.manyParagraphs(40)) {
+            XCTAssertFalse(chunk.text.last?.isWhitespace ?? false,
+                           "chunk text ends in whitespace: \(chunk.text.suffix(24).debugDescription)")
         }
     }
 
@@ -137,10 +190,21 @@ final class ChunkerTests: XCTestCase {
         for chunk in chunks {
             XCTAssertLessThanOrEqual(chunk.text.count, chunker.maxCharactersPerChunk)
         }
+        XCTAssertEqual(chunks.map { $0.text + $0.trailing }.joined(), text)
     }
 
     func testEmptyInput() {
         XCTAssertTrue(Chunker().split("").isEmpty)
+    }
+
+    // MARK: - Fixtures
+
+    /// A document of `n` short paragraphs - together far over the budget, individually well
+    /// under it. This is the shape that exposed the bug; one enormous paragraph does not.
+    private static func manyParagraphs(_ n: Int) -> String {
+        let sentence = "The archive holds records that span a little over four decades. "
+        return (0..<n).map { "\(sentence)Paragraph number \($0) exists only for this test." }
+                      .joined(separator: "\n\n")
     }
 }
 

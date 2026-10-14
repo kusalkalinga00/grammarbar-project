@@ -246,6 +246,11 @@ struct Options {
     var limit: Int? = nil
     var sourceFilters: [String] = []
     var quiet = false
+    /// Override the chunking budget by pretending the model has this context size.
+    /// Exists to measure the fidelity/call-count trade-off: the chunk size was originally
+    /// chosen as 40% of the context window, which reasons about what FITS, not about how
+    /// much text the model can correct without dropping some.
+    var contextSizeOverride: Int? = nil
 }
 
 func usage() -> String {
@@ -263,6 +268,7 @@ func usage() -> String {
       --mode <both|pipeline|raw> both = pipeline + raw pass     (default: both)
       --limit <n>                run only the first n cases
       --filter-source <prefix>   only cases whose `source` starts with prefix; repeatable
+      --context-size <n>         override the chunking budget (see Options.contextSizeOverride)
       --quiet                    suppress per-case progress on stderr
       --help                     this message
     """
@@ -283,6 +289,7 @@ func parseArgs(_ argv: [String]) -> Options? {
         case "--mode": if let v = value() { o.mode = v; i += 1 }
         case "--limit": if let v = value(), let n = Int(v) { o.limit = n; i += 1 }
         case "--filter-source": if let v = value() { o.sourceFilters.append(v); i += 1 }
+        case "--context-size": if let v = value(), let n = Int(v) { o.contextSizeOverride = n; i += 1 }
         case "--quiet": o.quiet = true
         default:
             FileHandle.standardError.write("unknown option: \(a)\n\(usage())\n".data(using: .utf8)!)
@@ -545,7 +552,8 @@ func main() async -> Int32 {
     }
 
     let apple = AppleGrammarEngine()
-    let liveContext = kind == .apple ? apple.contextSize : Chunker.appleMeasuredContext
+    let liveContext = opts.contextSizeOverride
+        ?? (kind == .apple ? apple.contextSize : Chunker.appleMeasuredContext)
     let service = CorrectionService(contextSize: liveContext)
     let validator = Validator(kind: kind)
 

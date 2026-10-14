@@ -149,4 +149,57 @@ final class CorrectionServiceFailureTests: XCTestCase {
         }
         XCTAssertEqual(try XCTUnwrap(final).attempts, 0)
     }
+
+    // MARK: - Document-level integrity
+
+    /// Per-chunk validation cannot see the document. Measured: at a 3,276-character chunk
+    /// budget the pipeline dropped 27% of a 58-paragraph document and reported `.corrected`
+    /// with no warnings, because each chunk on its own stayed inside the ratio band.
+    func testDocumentIntegrityRejectsTheMeasuredSilentLoss() {
+        let input = String(repeating: "The archive holds records that span four decades. \n\n",
+                           count: 300)
+        let output = String(input.dropLast(input.count / 4))
+        XCTAssertNotNil(CorrectionService.documentIntegrityFailure(input: input, output: output),
+                        "a 25% document loss must not be treated as a clean correction")
+    }
+
+    /// A dropped paragraph barely moves the length of a long document, so the ratio band
+    /// alone would miss it. The paragraph count is the second net.
+    func testDocumentIntegrityCatchesOneLostParagraphInALongDocument() {
+        let line = "A sentence that is long enough to matter. \n\n"
+        let input = String(repeating: line, count: 300)
+        var output = input
+        if let r = output.range(of: line) { output.removeSubrange(r) }
+        XCTAssertNotNil(CorrectionService.documentIntegrityFailure(input: input, output: output),
+                        "a dropped paragraph must be visible even when length barely moves")
+    }
+
+    /// 13 -> 16 characters is a 23% change and entirely legitimate; the absolute floor is
+    /// what keeps the ratio band from misfiring on short inputs.
+    func testDocumentIntegrityAllowsALegitimateShortEdit() {
+        XCTAssertNil(CorrectionService.documentIntegrityFailure(
+            input: "i has a apple", output: "I have an apple."))
+    }
+
+    func testDocumentIntegrityAllowsAnUnchangedDocument() {
+        let text = "The cat sat on the mat.\n\nThe cat sat on the mat again."
+        XCTAssertNil(CorrectionService.documentIntegrityFailure(input: text, output: text))
+    }
+
+    /// Real corrections must never be mistaken for shape changes, or the guard would reject
+    /// the app's own good output.
+    func testDocumentIntegrityAllowsRealCorrections() {
+        let pairs = [
+            ("i has a apple and she go to school yesterday",
+             "I have an apple and she went to school yesterday."),
+            ("The company have three new product that will be launch next month.",
+             "The company has three new products that will be launched next month."),
+            ("Every one of the students have submit there assignment late.",
+             "Every one of the students has submitted their assignment late."),
+        ]
+        for (input, output) in pairs {
+            XCTAssertNil(CorrectionService.documentIntegrityFailure(input: input, output: output),
+                         "legitimate correction rejected as a shape change: \(output)")
+        }
+    }
 }

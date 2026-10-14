@@ -82,6 +82,8 @@ public struct CorrectionService: Sendable {
                     let trimmedIn = text.trimmingCharacters(in: .whitespacesAndNewlines)
                     let trimmedOut = assembled.trimmingCharacters(in: .whitespacesAndNewlines)
                     let noChange = trimmedIn == trimmedOut
+                    let integrityFailure = Self.documentIntegrityFailure(input: trimmedIn,
+                                                                        output: trimmedOut)
 
                     var finalOutcome: CorrectionOutcome
                     if let declined = declinedReasons.first {
@@ -90,6 +92,15 @@ public struct CorrectionService: Sendable {
                     } else if substitutedOriginal {
                         finalOutcome = .flagged(warnings.first
                             ?? "The model's output didn't pass validation, so your original text is shown unchanged.")
+                    } else if let integrityFailure {
+                        // Per-chunk validation cannot see the document, and is measurably too
+                        // loose to substitute for it: at a 3,276-character budget the pipeline
+                        // dropped 27% of a 58-paragraph document and still reported .corrected
+                        // with no warnings, because every individual chunk stayed inside the
+                        // length-ratio band. The document is the unit the user cares about.
+                        finalOutcome = .flagged("The output no longer has the same shape as "
+                            + "your input (\(integrityFailure)), so it isn't shown as a "
+                            + "verified correction.")
                     } else if noChange {
                         // Bug B: never claim success when the input looked like
                         // it could have hijacked the run.
@@ -104,8 +115,13 @@ public struct CorrectionService: Sendable {
                         finalOutcome = .corrected
                     }
 
+                    // A document-level integrity failure means the assembled text is not
+                    // trustworthy at all, so the original is what gets shown - the same
+                    // principle as an individual chunk that fails validation.
+                    let shownText = integrityFailure == nil ? assembled : text
+
                     let result = CorrectionResult(
-                        text: assembled,
+                        text: shownText,
                         outcome: finalOutcome,
                         validation: lastValidation ?? validator.validate(
                             input: text,
@@ -346,6 +362,38 @@ public struct CorrectionService: Sendable {
 
         // A header alone is a topic; a header followed by a command is an instruction.
         return headerPatterns.contains { followedByImperative($0, inTokens: have) }
+    }
+
+    /// Whole-document integrity, which per-chunk validation structurally cannot provide.
+    ///
+    /// A correction may change characters freely but must not change the document's SHAPE.
+    /// A chunk-level check compares a chunk against itself and is blind to a run of text that
+    /// went missing between two chunks. The user is not.
+    ///
+    /// Tolerance is a ratio band plus an absolute floor, because a ratio alone misfires on
+    /// short inputs: "i has a apple" (13 chars) -> "I have an apple." (16) is a 23% change and
+    /// completely legitimate.
+    static func documentIntegrityFailure(input: String, output: String) -> String? {
+        guard !input.isEmpty else { return nil }
+
+        let delta = output.count - input.count
+        if abs(delta) > 40 {
+            let ratio = Double(output.count) / Double(input.count)
+            if ratio < 0.97 || ratio > 1.03 {
+                let percent = Int((ratio * 100).rounded())
+                return delta < 0
+                    ? "it is missing \(abs(delta)) characters (\(percent)% of the original length)"
+                    : "it gained \(delta) characters (\(percent)% of the original length)"
+            }
+        }
+
+        let inParagraphs = input.components(separatedBy: "\n\n").count
+        let outParagraphs = output.components(separatedBy: "\n\n").count
+        if inParagraphs >= 2, outParagraphs < inParagraphs {
+            return "\(inParagraphs) paragraphs became \(outParagraphs)"
+        }
+
+        return nil
     }
 
     static func emptyResult(text: String) -> CorrectionResult {
