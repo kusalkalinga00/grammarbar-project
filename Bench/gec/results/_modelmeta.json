@@ -1,0 +1,436 @@
+{
+  "unbabel-gec-t5_small": {
+    "slug": "unbabel-gec-t5_small",
+    "model_id": "Unbabel/gec-t5_small",
+    "revision": "c958d53bfbce19c87342b69fc6bcaba7303d076f",
+    "license_tags": "apache-2.0",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1175
+      },
+      {
+        "name": "README.md",
+        "bytes": 1387
+      },
+      {
+        "name": "config.json",
+        "bytes": 1440
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 242083771
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 1786
+      },
+      {
+        "name": "spiece.model",
+        "bytes": 791656
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 1387604
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1924
+      }
+    ],
+    "weights_bytes": 242083771,
+    "weights_mb": 242.1,
+    "total_repo_bytes": 244270743,
+    "total_repo_mb": 244.3
+  },
+  "pszemraj-grammar-synthesis-small": {
+    "slug": "pszemraj-grammar-synthesis-small",
+    "model_id": "pszemraj/grammar-synthesis-small",
+    "revision": "87b056e0099386da1355a3b80e51e59e9faf1219",
+    "license_tags": [
+      "cc-by-nc-sa-4.0",
+      "apache-2.0"
+    ],
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1227
+      },
+      {
+        "name": "README.md",
+        "bytes": 6879
+      },
+      {
+        "name": "config.json",
+        "bytes": 891
+      },
+      {
+        "name": "grammar-synthesis-small-WIP-ft3-jflAUG-v5_training_metadata.json",
+        "bytes": 3067
+      },
+      {
+        "name": "model.onnx",
+        "bytes": 308227123
+      },
+      {
+        "name": "model.safetensors",
+        "bytes": 307867046
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 307868971
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 2201
+      },
+      {
+        "name": "spiece.model",
+        "bytes": 791656
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 2422431
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 2575
+      },
+      {
+        "name": "trainer_state.json",
+        "bytes": 85127
+      }
+    ],
+    "weights_bytes": 615736017,
+    "weights_mb": 615.7,
+    "total_repo_bytes": 927279194,
+    "total_repo_mb": 927.3
+  },
+  "vennify-t5-base-grammar-correction": {
+    "slug": "vennify-t5-base-grammar-correction",
+    "model_id": "vennify/t5-base-grammar-correction",
+    "revision": "9e4a09d21dca1072a69302df9261289d03c3ed78",
+    "license_tags": "cc-by-nc-sa-4.0",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 737
+      },
+      {
+        "name": "README.md",
+        "bytes": 939
+      },
+      {
+        "name": "config.json",
+        "bytes": 1416
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 891730879
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 1786
+      },
+      {
+        "name": "spiece.model",
+        "bytes": 791656
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 1387438
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1923
+      }
+    ],
+    "weights_bytes": 891730879,
+    "weights_mb": 891.7,
+    "total_repo_bytes": 893916774,
+    "total_repo_mb": 893.9
+  },
+  "prithivida-grammar_error_correcter_v1": {
+    "slug": "prithivida-grammar_error_correcter_v1",
+    "model_id": "prithivida/grammar_error_correcter_v1",
+    "revision": "28f92ee33c2512814c22268b056a725364dae143",
+    "license_tags": null,
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 690
+      },
+      {
+        "name": "README.md",
+        "bytes": 118
+      },
+      {
+        "name": "config.json",
+        "bytes": 1388
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 891730879
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 1786
+      },
+      {
+        "name": "spiece.model",
+        "bytes": 791656
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 1387488
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1889
+      },
+      {
+        "name": "training_args.bin",
+        "bytes": 2479
+      }
+    ],
+    "weights_bytes": 891733358,
+    "weights_mb": 891.7,
+    "total_repo_bytes": 893918373,
+    "total_repo_mb": 893.9
+  },
+  "pszemraj-bart-base-grammar-synthesis": {
+    "slug": "pszemraj-bart-base-grammar-synthesis",
+    "model_id": "pszemraj/bart-base-grammar-synthesis",
+    "revision": "c11f2f68112a8699e253814fa334c26e03c34259",
+    "license_tags": [
+      "cc-by-nc-sa-4.0",
+      "apache-2.0"
+    ],
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1477
+      },
+      {
+        "name": ".gitignore",
+        "bytes": 13
+      },
+      {
+        "name": "README.md",
+        "bytes": 5346
+      },
+      {
+        "name": "all_results.json",
+        "bytes": 198
+      },
+      {
+        "name": "config.json",
+        "bytes": 1312
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 318
+      },
+      {
+        "name": "merges.txt",
+        "bytes": 456318
+      },
+      {
+        "name": "model.onnx",
+        "bytes": 712695682
+      },
+      {
+        "name": "model.safetensors",
+        "bytes": 557912620
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 557971229
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 280
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 2108619
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 349
+      },
+      {
+        "name": "train_results.json",
+        "bytes": 198
+      },
+      {
+        "name": "trainer_state.json",
+        "bytes": 170286
+      },
+      {
+        "name": "training_args.bin",
+        "bytes": 3771
+      },
+      {
+        "name": "vocab.json",
+        "bytes": 798293
+      }
+    ],
+    "weights_bytes": 1115887620,
+    "weights_mb": 1115.9,
+    "total_repo_bytes": 1832126309,
+    "total_repo_mb": 1832.1
+  },
+  "visheratin-t5-efficient-tiny-grammar-correction": {
+    "slug": "visheratin-t5-efficient-tiny-grammar-correction",
+    "model_id": "visheratin/t5-efficient-tiny-grammar-correction",
+    "revision": "a98f126664317cf2e68d33234c7072fdd6b289f3",
+    "license_tags": "mit",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1384
+      },
+      {
+        "name": "README.md",
+        "bytes": 892
+      },
+      {
+        "name": "config.json",
+        "bytes": 728
+      },
+      {
+        "name": "decoder_model.onnx",
+        "bytes": 80538560
+      },
+      {
+        "name": "encoder_model.onnx",
+        "bytes": 45516976
+      },
+      {
+        "name": "encoder_model_quant.onnx",
+        "bytes": 11477401
+      },
+      {
+        "name": "init_decoder_model.onnx",
+        "bytes": 82637283
+      },
+      {
+        "name": "init_decoder_quant.onnx",
+        "bytes": 20977764
+      },
+      {
+        "name": "ort_config.json",
+        "bytes": 698
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 62311002
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 2201
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 2422164
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 2425
+      }
+    ],
+    "weights_bytes": 62311002,
+    "weights_mb": 62.3,
+    "total_repo_bytes": 305889478,
+    "total_repo_mb": 305.9
+  },
+  "gotutiyan-gec-t5-small-clang8": {
+    "slug": "gotutiyan-gec-t5-small-clang8",
+    "model_id": "gotutiyan/gec-t5-small-clang8",
+    "revision": "1eeccc732e04611c49883ecfd52e92d9fc32f889",
+    "license_tags": "cc-by-nc-sa-4.0",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1519
+      },
+      {
+        "name": "README.md",
+        "bytes": 532
+      },
+      {
+        "name": "config.json",
+        "bytes": 778
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 142
+      },
+      {
+        "name": "model.safetensors",
+        "bytes": 307867048
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 2543
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 2422256
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 20789
+      }
+    ],
+    "weights_bytes": 307867048,
+    "weights_mb": 307.9,
+    "total_repo_bytes": 310315607,
+    "total_repo_mb": 310.3
+  },
+  "abhinavsarkar-t5base-c4-200m-550k": {
+    "slug": "abhinavsarkar-t5base-c4-200m-550k",
+    "model_id": "abhinavsarkar/Google-T5-base-Grammatical_Error_Correction-Finetuned-C4-200M-550k",
+    "revision": "bae7124b97294926cb6db6abc4a15a031941dbb1",
+    "license_tags": "apache-2.0",
+    "files": [
+      {
+        "name": ".gitattributes",
+        "bytes": 1519
+      },
+      {
+        "name": "README.md",
+        "bytes": 3669
+      },
+      {
+        "name": "config.json",
+        "bytes": 1382
+      },
+      {
+        "name": "pytorch_model.bin",
+        "bytes": 891730879
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 1786
+      },
+      {
+        "name": "spiece.model",
+        "bytes": 791656
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1946
+      },
+      {
+        "name": "training_args.bin",
+        "bytes": 3119
+      }
+    ],
+    "weights_bytes": 891733998,
+    "weights_mb": 891.7,
+    "total_repo_bytes": 892535956,
+    "total_repo_mb": 892.5
+  }
+}

@@ -46,3 +46,6 @@ Eval/RESULTS.full-corpus.md
 
 # --- macOS -----------------------------------------------------------------
 .DS_Store
+
+# Raw benchmark logs: bulky, regenerable, no analytical value.
+Bench/gec/results/*.log

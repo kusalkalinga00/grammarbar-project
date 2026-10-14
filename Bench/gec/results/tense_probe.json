@@ -1,0 +1,332 @@
+{
+  "Unbabel/gec-t5_small": {
+    "template": "gec: {text}",
+    "decoding": "greedy",
+    "unchanged_of_8": 8,
+    "cases": [
+      {
+        "probe": "t1",
+        "input": "I have lived in Berlin for three years.",
+        "output": "I have lived in Berlin for three years.",
+        "unchanged": true
+      },
+      {
+        "probe": "t2",
+        "input": "She had already left when I called.",
+        "output": "She had already left when I called.",
+        "unchanged": true
+      },
+      {
+        "probe": "t3",
+        "input": "We will be launching the beta next week.",
+        "output": "We will be launching the beta next week.",
+        "unchanged": true
+      },
+      {
+        "probe": "t4",
+        "input": "He was reading when the phone rang.",
+        "output": "He was reading when the phone rang.",
+        "unchanged": true
+      },
+      {
+        "probe": "t5",
+        "input": "They have been waiting since noon.",
+        "output": "They have been waiting since noon.",
+        "unchanged": true
+      },
+      {
+        "probe": "t6",
+        "input": "If I were you, I would have gone earlier.",
+        "output": "If I were you, I would have gone earlier.",
+        "unchanged": true
+      },
+      {
+        "probe": "t7",
+        "input": "The committee meets on Tuesdays.",
+        "output": "The committee meets on Tuesdays.",
+        "unchanged": true
+      },
+      {
+        "probe": "t8",
+        "input": "He is more experienced than his brother.",
+        "output": "He is more experienced than his brother.",
+        "unchanged": true
+      }
+    ]
+  },
+  "vennify/t5-base-grammar-correction": {
+    "template": "grammar: {text}",
+    "decoding": "greedy",
+    "unchanged_of_8": 8,
+    "cases": [
+      {
+        "probe": "t1",
+        "input": "I have lived in Berlin for three years.",
+        "output": "I have lived in Berlin for three years.",
+        "unchanged": true
+      },
+      {
+        "probe": "t2",
+        "input": "She had already left when I called.",
+        "output": "She had already left when I called.",
+        "unchanged": true
+      },
+      {
+        "probe": "t3",
+        "input": "We will be launching the beta next week.",
+        "output": "We will be launching the beta next week.",
+        "unchanged": true
+      },
+      {
+        "probe": "t4",
+        "input": "He was reading when the phone rang.",
+        "output": "He was reading when the phone rang.",
+        "unchanged": true
+      },
+      {
+        "probe": "t5",
+        "input": "They have been waiting since noon.",
+        "output": "They have been waiting since noon.",
+        "unchanged": true
+      },
+      {
+        "probe": "t6",
+        "input": "If I were you, I would have gone earlier.",
+        "output": "If I were you, I would have gone earlier.",
+        "unchanged": true
+      },
+      {
+        "probe": "t7",
+        "input": "The committee meets on Tuesdays.",
+        "output": "The committee meets on Tuesdays.",
+        "unchanged": true
+      },
+      {
+        "probe": "t8",
+        "input": "He is more experienced than his brother.",
+        "output": "He is more experienced than his brother.",
+        "unchanged": true
+      }
+    ]
+  },
+  "pszemraj/grammar-synthesis-small": {
+    "template": "{text}",
+    "decoding": "greedy",
+    "unchanged_of_8": 2,
+    "cases": [
+      {
+        "probe": "t1",
+        "input": "I have lived in Berlin for three years.",
+        "output": "I have been in Berlin for three years.",
+        "unchanged": false
+      },
+      {
+        "probe": "t2",
+        "input": "She had already left when I called.",
+        "output": "She had already left when I called.",
+        "unchanged": true
+      },
+      {
+        "probe": "t3",
+        "input": "We will be launching the beta next week.",
+        "output": "We will be releasing the beta next week.",
+        "unchanged": false
+      },
+      {
+        "probe": "t4",
+        "input": "He was reading when the phone rang.",
+        "output": "He was reading the newspaper. \"",
+        "unchanged": false
+      },
+      {
+        "probe": "t5",
+        "input": "They have been waiting since noon.",
+        "output": "They have been waiting for me.",
+        "unchanged": false
+      },
+      {
+        "probe": "t6",
+        "input": "If I were you, I would have gone earlier.",
+        "output": "If I were you, I would have gone elsewhere.",
+        "unchanged": false
+      },
+      {
+        "probe": "t7",
+        "input": "The committee meets on Tuesdays.",
+        "output": "The committee meetings on Thursdays.",
+        "unchanged": false
+      },
+      {
+        "probe": "t8",
+        "input": "He is more experienced than his brother.",
+        "output": "He is more experienced than his brother.",
+        "unchanged": true
+      }
+    ]
+  },
+  "visheratin/t5-efficient-tiny-grammar-correction": {
+    "template": "{text}",
+    "decoding": "greedy",
+    "unchanged_of_8": 7,
+    "cases": [
+      {
+        "probe": "t1",
+        "input": "I have lived in Berlin for three years.",
+        "output": "I have lived in Berlin for three years.",
+        "unchanged": true
+      },
+      {
+        "probe": "t2",
+        "input": "She had already left when I called.",
+        "output": "She had already left the office when I called.",
+        "unchanged": false
+      },
+      {
+        "probe": "t3",
+        "input": "We will be launching the beta next week.",
+        "output": "We will be launching the beta next week.",
+        "unchanged": true
+      },
+      {
+        "probe": "t4",
+        "input": "He was reading when the phone rang.",
+        "output": "He was reading when the phone rang.",
+        "unchanged": true
+      },
+      {
+        "probe": "t5",
+        "input": "They have been waiting since noon.",
+        "output": "They have been waiting since noon.",
+        "unchanged": true
+      },
+      {
+        "probe": "t6",
+        "input": "If I were you, I would have gone earlier.",
+        "output": "If I were you, I would have gone earlier.",
+        "unchanged": true
+      },
+      {
+        "probe": "t7",
+        "input": "The committee meets on Tuesdays.",
+        "output": "The committee meets on Tuesdays.",
+        "unchanged": true
+      },
+      {
+        "probe": "t8",
+        "input": "He is more experienced than his brother.",
+        "output": "He is more experienced than his brother.",
+        "unchanged": true
+      }
+    ]
+  },
+  "gotutiyan/gec-t5-small-clang8": {
+    "template": "{text}",
+    "decoding": "greedy",
+    "unchanged_of_8": 8,
+    "cases": [
+      {
+        "probe": "t1",
+        "input": "I have lived in Berlin for three years.",
+        "output": "I have lived in Berlin for three years.",
+        "unchanged": true
+      },
+      {
+        "probe": "t2",
+        "input": "She had already left when I called.",
+        "output": "She had already left when I called.",
+        "unchanged": true
+      },
+      {
+        "probe": "t3",
+        "input": "We will be launching the beta next week.",
+        "output": "We will be launching the beta next week.",
+        "unchanged": true
+      },
+      {
+        "probe": "t4",
+        "input": "He was reading when the phone rang.",
+        "output": "He was reading when the phone rang.",
+        "unchanged": true
+      },
+      {
+        "probe": "t5",
+        "input": "They have been waiting since noon.",
+        "output": "They have been waiting since noon.",
+        "unchanged": true
+      },
+      {
+        "probe": "t6",
+        "input": "If I were you, I would have gone earlier.",
+        "output": "If I were you, I would have gone earlier.",
+        "unchanged": true
+      },
+      {
+        "probe": "t7",
+        "input": "The committee meets on Tuesdays.",
+        "output": "The committee meets on Tuesdays.",
+        "unchanged": true
+      },
+      {
+        "probe": "t8",
+        "input": "He is more experienced than his brother.",
+        "output": "He is more experienced than his brother.",
+        "unchanged": true
+      }
+    ]
+  },
+  "abhinavsarkar/Google-T5-base-Grammatical_Error_Correction-Finetuned-C4-200M-550k": {
+    "template": "{text}",
+    "decoding": "greedy",
+    "unchanged_of_8": 8,
+    "cases": [
+      {
+        "probe": "t1",
+        "input": "I have lived in Berlin for three years.",
+        "output": "I have lived in Berlin for three years.",
+        "unchanged": true
+      },
+      {
+        "probe": "t2",
+        "input": "She had already left when I called.",
+        "output": "She had already left when I called.",
+        "unchanged": true
+      },
+      {
+        "probe": "t3",
+        "input": "We will be launching the beta next week.",
+        "output": "We will be launching the beta next week.",
+        "unchanged": true
+      },
+      {
+        "probe": "t4",
+        "input": "He was reading when the phone rang.",
+        "output": "He was reading when the phone rang.",
+        "unchanged": true
+      },
+      {
+        "probe": "t5",
+        "input": "They have been waiting since noon.",
+        "output": "They have been waiting since noon.",
+        "unchanged": true
+      },
+      {
+        "probe": "t6",
+        "input": "If I were you, I would have gone earlier.",
+        "output": "If I were you, I would have gone earlier.",
+        "unchanged": true
+      },
+      {
+        "probe": "t7",
+        "input": "The committee meets on Tuesdays.",
+        "output": "The committee meets on Tuesdays.",
+        "unchanged": true
+      },
+      {
+        "probe": "t8",
+        "input": "He is more experienced than his brother.",
+        "output": "He is more experienced than his brother.",
+        "unchanged": true
+      }
+    ]
+  }
+}
