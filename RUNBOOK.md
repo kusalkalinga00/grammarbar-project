@@ -177,6 +177,10 @@ the over-editing failure — check that `TenseGuard` and the retry ladder are in
       section and the privacy statement.
 - [ ] Timing appears in the header after a run (~350–1000 ms; first run after
       launch is slower — that is the cold model load).
+- [ ] **Clear (trash, ⌘K)** empties both fields, is greyed out when they are
+      already empty, and also clears the timing readout.
+- [ ] **Quit (power, ⌘Q)** actually exits the process — `pgrep -x GrammarBar`
+      should then return nothing.
 
 > The **Download offline model…** and **Import from file…** buttons are
 > deliberately disabled: the XPC downloader has no bundle target yet (§8).
@@ -404,6 +408,19 @@ rm -rf .build-xcode && xcodebuild -project GrammarBar.xcodeproj -scheme GrammarB
 **`timeout 540 xcodebuild ...` exits 127 and nothing happens**
 macOS has no coreutils `timeout`. Use `gtimeout` (`brew install coreutils`) or just
 run the command directly.
+
+**Restarting the dev build — or the old instance won't die**
+`pkill -f "Contents/MacOS/GrammarBar"` **misses** an instance launched as
+`./GrammarBar` from inside the bundle, which is easy to do by accident. It then
+sits in the menu bar indefinitely. Match the exact process name instead:
+
+```sh
+pkill -x GrammarBar && open .build-xcode/Build/Products/Debug/GrammarBar.app
+ps aux | grep -i "MacOS/GrammarBar" | grep -v grep   # expect exactly one
+```
+
+The panel now has a Quit button (⌘Q), so this is only needed when swapping in a
+new build.
 
 **The app shows "Apple Intelligence is turned off"**
 Check §5.1. Note that filesystem state is not availability: an empty asset

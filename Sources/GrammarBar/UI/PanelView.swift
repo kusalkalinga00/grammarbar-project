@@ -92,6 +92,18 @@ struct PanelView: View {
             }
             .buttonStyle(.borderless)
             .help("Settings")
+
+            // A Dock-less app with no menu bar menus has no other quit path —
+            // without this the only ways out are pkill or Activity Monitor.
+            // ⌘Q matches the platform convention.
+            Button {
+                NSApp.terminate(nil)
+            } label: {
+                Image(systemName: "power")
+            }
+            .buttonStyle(.borderless)
+            .keyboardShortcut("q", modifiers: .command)
+            .help("Quit GrammarBar (⌘Q)")
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
