@@ -532,7 +532,46 @@ consent per tap, and it must be in the README or every user's first command fail
 
 Verified working after trusting: `brew info --cask grammarbar` resolves `0.1.0`,
 `Required: macOS >= 26` (confirming the `:tahoe` symbol), the `GrammarBar.app` artifact, and the
-caveats. The only unverified step is the download itself, which needs the GitHub Release.
+caveats.
+
+### Verified end to end on v0.1.0
+
+The full chain was run against the published release: tap, trust, `brew audit --cask` (silent),
+`brew install --cask grammarbar` (checksum verified, app moved to `/Applications`), launch.
+
+The released bytes hash to the value pinned in the cask, confirmed by downloading the asset
+anonymously and hashing it.
+
+### Gatekeeper: the app IS quarantined, and macOS DOES prompt
+
+An earlier revision of this runbook claimed Homebrew's `curl` download avoids the quarantine
+flag and therefore launches without a prompt. **That was wrong, and it was wrong in the README,
+the cask caveats and the release notes at the same time.** It came from reasoning about how
+`curl` works instead of measuring the installed result.
+
+Measured on a real `brew install`:
+
+```sh
+xattr -p com.apple.quarantine /Applications/GrammarBar.app
+# 0181;6acf29ad;;C85EB82C-...
+spctl -a -vvv -t exec /Applications/GrammarBar.app     # rejected
+log show --predicate 'process == "syspolicyd"'         # "Prompt shown (6, 0), waiting for response"
+```
+
+So the first launch requires manual approval under **System Settings → Privacy & Security**.
+That is a one-time cost, and it is the concrete argument for paying for Developer ID +
+notarization if the friction matters for distribution.
+
+**Two Homebrew 7 details that bit during this run:**
+
+- `brew audit [path]` is **disabled** — it must be `brew audit --cask <name>`, so the cask has to
+  be tapped first. `brew audit --cask ./Casks/grammarbar.rb` fails with "Calling `brew audit
+  [path ...]` is disabled!".
+- A tap is a **git clone**, so it goes stale. `brew update` pulls it forward; a cask edited in
+  the repo is not live in the tap until then. Check with
+  `git -C $(brew --repository)/Library/Taps/<user>/homebrew-<tap> log --oneline -1`.
+- Trust is remembered **per cask, not per tap**: untapping and re-tapping did not re-trigger the
+  `brew trust` gate on this machine.
 
 ### Why not `homebrew/cask`
 

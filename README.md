@@ -53,8 +53,11 @@ The cask lives in this repo at [`Casks/grammarbar.rb`](Casks/grammarbar.rb), so 
 second repository to keep in sync. Homebrew clones it as `homebrew-grammarbar` even though the
 repo is named `grammarbar-project` — the explicit URL makes that work.
 
-Homebrew downloads with `curl`, which does **not** set the macOS quarantine flag, so the ad-hoc
-signed build should launch without a Gatekeeper prompt.
+**Expect a Gatekeeper prompt on first launch.** The app is ad-hoc signed, not notarized, so
+macOS asks you to confirm it once — approve it under **System Settings → Privacy & Security**.
+Measured on a real install rather than assumed: the download *is* quarantined and `spctl`
+rejects the app, so the prompt is expected behaviour, not a misconfiguration. Notarizing needs a
+paid Apple Developer account; see `RUNBOOK.md` §11.
 
 It is deliberately **not** in `homebrew/cask`: that repo requires a build that passes
 Gatekeeper (i.e. notarized) and clears a notability threshold, neither of which this project

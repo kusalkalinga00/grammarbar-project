@@ -30,8 +30,8 @@ cask "grammarbar" do
     Without it the app opens but cannot correct anything - it will point you at
     that setting. There is no offline fallback in v1.
 
-    The app is ad-hoc signed, not notarized. Homebrew downloads it with curl,
-    which does not set the quarantine attribute, so it should launch without a
-    Gatekeeper prompt.
+    The app is ad-hoc signed, not notarized, so macOS asks you to confirm it the
+    first time you open it. Approve it once under System Settings > Privacy &
+    Security, and it opens normally from then on.
   EOS
 end
