@@ -253,13 +253,34 @@ The cat sat on the mat again.
 
 ## E. Long text and chunking — the untested feature (FR5)
 
-**This is the highest-value test in this document, because it has never actually been run.**
+**This section has now been run headlessly** (`GrammarBarEval --set <long-input as a case>`),
+which found three defects — see the chunking commit. Use it to confirm the app behaves the same
+way from the UI as it does through the pipeline.
 
-`Chunker.maxCharactersPerChunk = 8192 × 0.4 × 4 = ` **13,104 characters**. Anything shorter is
-a *single* chunk, so a paragraph tells you nothing. `Tests/manual/long-input.txt` is
-**15,188 characters** with **59 paragraphs**, which forces multiple chunks.
+The budget is **816 characters**, not the context-derived figure:
+
+`Chunker.maxCharactersPerChunk = min(contextFit, fidelity)`, where `contextFit = 8192 × 0.4 × 4 =
+13,104` but the measured **fidelity** limit is 816. Above roughly 3,000 characters the engine
+drops runs of text; at 3,276 it dropped 14 of 58 paragraphs *and reported success with no
+warning*. So a paragraph still tells you nothing — you need text well over 816 characters, and
+`Tests/manual/long-input.txt` at **15,188 characters / 59 paragraphs** produces **26 chunks**.
 
 **How to run it:** open `Tests/manual/long-input.txt`, select all, copy, paste, submit.
+
+**Expected baseline** (measured through the pipeline on the same file):
+
+| Measure | Expected |
+|---|---|
+| Outcome | corrected, **no warning** |
+| Wall clock | ~50 s (26 chunks, one model call each) |
+| Length | 15,188 → ~15,190 characters |
+| Paragraph separators | 58 → **58** |
+| Filler paragraphs | 25 → **25** |
+| Deliberate errors fixed | **7 of 7** |
+| Both sentinels present | yes |
+
+If you see a *warning* instead, or fewer than 58 separators, that is the defect this section
+exists to catch — say which part of the document is affected (start, middle or end).
 
 The file contains sentinels and seven deliberate errors, so you can check reassembly:
 

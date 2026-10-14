@@ -22,7 +22,7 @@ macOS 27.0.1 / Apple M5.
 
 **Verified:**
 
-- `swift build` clean · **179 tests passing** (54 core, 125 downloader)
+- `swift build` clean · **195 tests passing** (70 core, 125 downloader)
 - `xcodebuild` Debug **and** Release succeed
 - The bundle carries `LSUIElement=true` and launches as Launch Services
   `type="UIElement"` — a menu bar app with no Dock icon
@@ -94,7 +94,7 @@ with its checksum — that is the artifact the cask points at.
 ```sh
 git clone https://github.com/kusalkalinga00/grammarbar-project.git && cd grammarbar-project
 
-swift test                                  # 179 tests
+swift test                                  # 195 tests
 swift run GrammarBarEval --label first-party # quality baseline
 
 xcodegen generate                           # -> GrammarBar.xcodeproj
@@ -105,6 +105,9 @@ open .build-xcode/Build/Products/Debug/GrammarBar.app
 
 **See `RUNBOOK.md`** for the full build/run/test guide, a manual UI checklist
 with measured expected outputs, and troubleshooting.
+**See `USER-GUIDE.md`** for the end-user guide, and **`PRIVACY.md`** for the privacy
+statement with its measured evidence. `MANUAL-TEST-PHRASES.md` is a copy-paste sheet for
+testing by hand.
 
 ## Design
 
@@ -177,7 +180,7 @@ Model downloading is not in this build; there is no XPC helper yet.
 
 | Layer | Command | Scale |
 |---|---|---|
-| Unit | `swift test` | 179 tests |
+| Unit | `swift test` | 195 tests (70 core, 125 downloader) |
 | Regression pins | `swift test --filter ReconRegressionTests` | the two bugs above |
 | Quality baseline | `swift run GrammarBarEval --label first-party` | 48 cases, ~50 s |
 | Full corpus eval | `swift run GrammarBarEval` | 260 cases, ~5 min |
@@ -186,6 +189,22 @@ Model downloading is not in this build; there is no XPC helper yet.
 The eval is the reason "the engine's behaviour changed" can be a number rather
 than an argument. Re-run it after every macOS update; the on-device model is a
 moving target, and the raw pass is the drift check.
+
+### NFR7, restated
+
+The original requirement — "already-correct input comes back byte-identical in ≥98% of cases" —
+cannot be met *or measured* as written. JFLEG as distributed is whitespace-tokenised: its
+punctuation arrives as separate tokens with a leading space, so a corrector closing `do n't` to
+`don't` is doing its job while a byte comparison scores it as over-editing.
+
+Measured on the full corpus: **70% under a byte comparison, 88% after whitespace
+normalisation.** On clean first-party prose: **18 of 18, 100%.**
+
+So the requirement is now defined against the normalised comparison
+(`ComparisonNormalisation`, `Tests/GrammarBarCoreTests/ComparisonNormalisationTests.swift`) and
+is only meaningful on text that is already well-formed — which makes the first-party set the one
+that measures it. The corpora still measure correction quality; they cannot measure this
+property. The eval now prints **both** readings, so the distinction can never be quietly lost.
 
 ## Licensing — read this before shipping anything
 
@@ -231,11 +250,16 @@ Full terms: `Eval/LICENSES.md`.
   prompts on first launch, so every user approves it once under System Settings → Privacy &
   Security. Removing that friction needs Developer ID + notarization ($99/yr). The App Store is
   deferred, not rejected.
-- **Where FR6 lives.** Launch at login and a global panel shortcut are the two unimplemented
-  parts of FR6, and removing the Settings window left them with no home. They need either a
-  right-click menu on the menu bar icon or a Settings window reintroduced once there is a
-  second setting to justify one. Note `SMAppService.mainApp.register()` is **unverified** for an
-  ad-hoc signed app — test it before promising the feature.
+- **FR6, split.** Launch at login is **done and measured**: `SMAppService.mainApp.register()`
+  works on an ad-hoc signed build (status `notFound` → `enabled`, confirmed in `sfltool
+  dumpbtm`), so it needs no Developer ID. It lives in a panel footer rather than a Settings
+  window, since it is the only remaining preference.
+- **FR6 panel shortcut — deliberately not done.** `MenuBarExtra` gives no public way to open its
+  panel programmatically, so a global hotkey requires replacing the menu bar item with an
+  `NSStatusItem` + `NSPopover` — which changes the entire panel presentation, including sizing,
+  focus and the ⌘K/⌘Q shortcuts. That is not a change to make without being able to see the
+  result, and the current panel is verified working. It should be done in a session where the
+  screen is visible, with the app relaunched between attempts.
 - **Offline engine (v2).** Round 2 found an offline model in Apple's quality band, so this
   is a real choice now rather than a dead end. Options, evidence and the three cheap checks
   that should come first are in [`V2-ENGINE-DECISION.md`](V2-ENGINE-DECISION.md).

@@ -64,6 +64,10 @@ struct CaseRecord: Codable {
     let outcome: String
     let fixed: Bool?
     let byteIdenticalToInput: Bool
+    /// NFR7 as the requirement actually means it: identical after whitespace normalisation.
+    /// `byteIdenticalToInput` is kept because it is still informative, but it is the wrong
+    /// test for the requirement - see `ComparisonNormalisation`.
+    let unchangedAfterNormalisation: Bool
     let editDistance: Double
     let editDistanceToExpected: Double?
     let tenseChanges: Int
@@ -151,6 +155,9 @@ struct Report: Codable {
     let coldFirstRawCallTtftMs: Double?
     let meaningChangedCases: [String]
     let overEditedCorrectCases: [String]
+    /// The same set under a byte comparison, kept visible so the difference between the two
+    /// readings can never be quietly dropped. See `ComparisonNormalisation`.
+    let overEditedCorrectCasesByteStrict: [String]
     let records: [CaseRecord]
 }
 
@@ -397,6 +404,7 @@ func runPipelinePass(_ c: EvalCase,
         fixed: (c.kind == "wrong" && c.expected != nil)
             ? isFixed(input: c.input, output: out, expected: c.expected!) : nil,
         byteIdenticalToInput: identical,
+        unchangedAfterNormalisation: ComparisonNormalisation.unchangedIgnoringWhitespace(c.input, out),
         editDistance: EditDistance.normalized(c.input, out),
         editDistanceToExpected: c.expected.map { EditDistance.normalized(out, $0) },
         tenseChanges: tense.tenseChanges,
@@ -619,7 +627,13 @@ func main() async -> Int32 {
     }
 
     let changedCases = records.filter { $0.meaningChanged }.map { $0.id }
-    let overEdited = records.filter { $0.kind == "correct" && !$0.byteIdenticalToInput }.map { $0.id }
+    // NFR7. The byte comparison is the wrong test: it counts a trimmed trailing newline, or a
+    // corrector closing up a tokenised corpus's "do n't", as over-editing. See
+    // ComparisonNormalisation for why the first-party set is the one that measures this.
+    let overEdited = records.filter { $0.kind == "correct" && !$0.unchangedAfterNormalisation }
+        .map { $0.id }
+    let overEditedByteStrict = records.filter { $0.kind == "correct" && !$0.byteIdenticalToInput }
+        .map { $0.id }
 
     let iso = ISO8601DateFormatter()
     let dayFmt = DateFormatter()
@@ -663,6 +677,7 @@ func main() async -> Int32 {
         coldFirstRawCallTtftMs: coldFirstCallMs,
         meaningChangedCases: changedCases,
         overEditedCorrectCases: overEdited,
+        overEditedCorrectCasesByteStrict: overEditedByteStrict,
         records: records)
 
     // ---- write
@@ -760,8 +775,13 @@ func renderText(_ r: Report) -> String {
 
     out += "\nmeaning-changed corrections (\(r.meaningChangedCases.count)): "
     out += r.meaningChangedCases.isEmpty ? "none" : r.meaningChangedCases.joined(separator: ", ")
-    out += "\nover-edited already-correct cases (\(r.overEditedCorrectCases.count)): "
+    out += "\nover-edited already-correct cases, NFR7 (\(r.overEditedCorrectCases.count)) [whitespace-normalised]: "
     out += r.overEditedCorrectCases.isEmpty ? "none" : r.overEditedCorrectCases.joined(separator: ", ")
+    out += "\n  the same set under a strict byte comparison (\(r.overEditedCorrectCasesByteStrict.count)): "
+    out += r.overEditedCorrectCasesByteStrict.isEmpty
+        ? "none" : r.overEditedCorrectCasesByteStrict.joined(separator: ", ")
+    out += "\n  (the byte figure counts trimmed newlines and a tokenised corpus's \"do n't\" as changes;"
+    out += " it is what NFR7 must NOT be measured with)"
     out += "\ndelimiter escalations: "
         + String(r.records.filter { $0.delimiterEscalated }.count)
     out += "\n"

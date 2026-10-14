@@ -30,7 +30,7 @@ cd ~/Developer/personal/GrammarBar
 swift test --filter ReconRegressionTests       # ~0.03s, 11 tests
 
 # 2. Full unit suite
-swift test                                     # 179 tests
+swift test                                     # 195 tests
 
 # 3. Smoke the eval harness against the live engine (3 cases)
 swift run GrammarBarEval --limit 3 --label smoke --quiet
