@@ -481,6 +481,13 @@ download a small offline model (≈ XXX MB)."* Buttons: **[Open Settings] [Downl
 
 ## 5. Model delivery
 
+> **v2 SUPERSEDED IN PART.** Round-2 measurement (2026-10-14) found an offline model in Apple's
+> quality band, which v1 of this section did not anticipate, and turned up a cheaper candidate
+> whose status depends on an open design question. **Read `V2-ENGINE-DECISION.md` before acting on
+> anything in this section.** The candidate list in §5.4 below is round-1 only and is out of date.
+>
+> Also note: v1 ships **Apple-only** (decided 2026-10-14), so none of §5 is on the v1 path.
+
 ### 5.1 Why a separate XPC helper
 Unchanged, and the reasoning still holds: the `network.client` entitlement must not sit on the
 process that handles user text, or the privacy claim is unverifiable. **Still unverified:** Apple's
