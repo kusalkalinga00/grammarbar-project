@@ -74,6 +74,30 @@ All 15 edits are on corpus cases: **11/11 JFLEG** and 4/21 BEA. The cause is the
 
 **Conclusion:** NFR7 cannot be validated on tokenised corpus text; the correct measurement is 100% on clean prose (n=18, small). Either the correct pool must be whitespace-filtered at build time, or NFR7 should be defined against a normalised comparison. The strict number in §2 is kept because it is what the harness was asked to record, but it should not be read as an engine defect.
 
+### Implemented, and re-verified
+
+The second option was taken: `ComparisonNormalisation` defines the metric, the eval records
+**both** readings per case (`byteIdenticalToInput` and `unchangedAfterNormalisation`) and prints
+both, so the strict number cannot be quietly dropped.
+
+Re-run on 2026-10-14, after that code existed, on the full corpus:
+
+| | this run | §3 above |
+|---|---|---|
+| strict | 35/50 = **70%** | 70% |
+| normalised | 44/50 = **88%** | 88% |
+| wrong-set fixed | **93/200** | 93/200 |
+| meaning-changed | **0** | 0 |
+
+It reproduces the figures above exactly, which is the point of recording them: a hand-computed
+analysis and an implementation that agree to the case.
+
+One thing that caught a mistake while writing it. The first version of `whitespaceNormalised`
+only collapsed whitespace **runs**, and it scored the corpus at 70% - identical to the byte
+comparison, changing nothing. The tokenisation artefact is not a run of spaces; it is a space
+*before* punctuation (`mat .`), which survives a run-collapse untouched. The correction is a
+space before `.,;:!?)]}` or after `([{`. Without that step the whole file was decorative.
+
 ## 4. Bug A (TenseGuard) — the guard never lets a mutation through, but it was far too blunt
 
 **Nothing was silently accepted.** Across 260 cases the pipeline's meaning-changed list is **empty**, and 0 cases show an unlicensed tense mutation in the text the app returns. That is FR9 working.
