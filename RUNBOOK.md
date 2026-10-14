@@ -484,3 +484,57 @@ GrammarBar/
    is 0 in every recorded run, and the guards (`TenseGuard`, the no-op check) exist
    to keep it that way. If that number ever moves, stop and treat it as the
    highest-priority bug in the project.
+
+
+---
+
+## 11. Release & distribution
+
+v1 ships through a **Homebrew tap**, not the Mac App Store. A personal tap needs no Apple
+Developer account, no notarization and no sandbox — it is free.
+
+### Cutting a release
+
+```sh
+./Scripts/release.sh --update
+```
+
+That regenerates the Xcode project, builds Release, asserts the bundle carries
+`LSUIElement=true` (a Dock icon would be a silent regression), packages
+`dist/GrammarBar-<version>.zip`, and writes the version + sha256 into `Casks/grammarbar.rb`.
+
+Then attach **that exact zip** to a GitHub Release tagged `v<version>`:
+
+```sh
+gh release create v0.1.0 dist/GrammarBar-0.1.0.zip --title "v0.1.0" --notes "See README.md"
+```
+
+**Do not rebuild between zipping and uploading.** The sha256 in the cask must match the
+uploaded bytes exactly or every install fails the checksum — which is the point of the
+checksum, but a miserable way to find out.
+
+### Validating the cask
+
+```sh
+brew style Casks/grammarbar.rb            # lint: stanza order, format, symbols
+brew install --cask ./Casks/grammarbar.rb # install from the local file
+brew audit --cask ./Casks/grammarbar.rb   # needs the release to exist; it fetches the URL
+```
+
+`brew style` passes clean today. `brew audit` cannot fully run until a release exists.
+
+### Why not `homebrew/cask`
+
+Two requirements this project does not meet, and neither is about code quality:
+
+- **Gatekeeper.** Core requires executable artifacts to pass Homebrew's Gatekeeper checks
+  without needing Gatekeeper bypassed. An ad-hoc signed app fails that; it would need a paid
+  Developer ID plus notarization.
+- **Notability.** Core has a notability threshold a new project does not clear.
+
+A personal tap has neither requirement, which is why the cask lives in this repo.
+
+### Uninstall hygiene
+
+The cask's `zap` stanza removes the preferences plist, the Application Support directory and
+the saved-state folder. v1 stores no history, so there is nothing else to clean up.

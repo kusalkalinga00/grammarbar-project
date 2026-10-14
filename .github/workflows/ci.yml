@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    # The app requires macOS 26 (FoundationModels), so CI must run on a runner
+    # at least that new. `macos-latest` is chosen deliberately rather than
+    # pinned: the project targets the current OS, and a stale runner would hide
+    # exactly the SDK drift the eval harness exists to catch.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show toolchain
+        run: |
+          sw_vers
+          xcodebuild -version
+          swift --version
+
+      - name: Build
+        run: swift build
+
+      - name: Test
+        run: swift test
+
+      - name: Confirm the release config also builds
+        run: |
+          brew install xcodegen
+          xcodegen generate
+          xcodebuild -project GrammarBar.xcodeproj -scheme GrammarBar \
+            -configuration Release -derivedDataPath .build-xcode build
+
+      - name: Assert the bundle carries LSUIElement
+        run: |
+          APP=.build-xcode/Build/Products/Release/GrammarBar.app
+          test "$(/usr/libexec/PlistBuddy -c 'Print :LSUIElement' "$APP/Contents/Info.plist")" = "true"

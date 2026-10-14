@@ -35,6 +35,39 @@ macOS 27.0.1 / Apple M5.
 service has never run, entitlements have never been enforced, the model download
 has never completed end to end, and there is no UI automation.
 
+## Install
+
+### Homebrew (the intended path)
+
+```sh
+brew tap kusalkalinga00/grammarbar https://github.com/kusalkalinga00/grammarbar-project
+brew install --cask grammarbar
+```
+
+The cask lives in this repo at [`Casks/grammarbar.rb`](Casks/grammarbar.rb), so there is no
+second repository to keep in sync. Homebrew downloads with `curl`, which does **not** set the
+macOS quarantine flag, so the ad-hoc signed build should launch without a Gatekeeper prompt.
+
+It is deliberately **not** in `homebrew/cask`: that repo requires a build that passes
+Gatekeeper (i.e. notarized) and clears a notability threshold, neither of which this project
+has yet. A personal tap has no such requirements and costs nothing.
+
+### From source
+
+No Apple Developer account, no certificates, nothing to sign:
+
+```sh
+git clone https://github.com/kusalkalinga00/grammarbar-project.git
+cd grammarbar-project
+xcodegen generate
+xcodebuild -project GrammarBar.xcodeproj -scheme GrammarBar \
+           -configuration Debug -derivedDataPath .build-xcode build
+open .build-xcode/Build/Products/Debug/GrammarBar.app
+```
+
+`./Scripts/release.sh` does the same in Release and packages `dist/GrammarBar-<version>.zip`
+with its checksum — that is the artifact the cask points at.
+
 ## Requirements
 
 - macOS 26+ on Apple Silicon
@@ -45,7 +78,7 @@ has never completed end to end, and there is no UI automation.
 ## Quick start
 
 ```sh
-git clone <repo> && cd GrammarBar
+git clone https://github.com/kusalkalinga00/grammarbar-project.git && cd grammarbar-project
 
 swift test                                  # 173 tests
 swift run GrammarBarEval --label first-party # quality baseline
@@ -163,10 +196,13 @@ Full terms: `Eval/LICENSES.md`.
 
 ## Open decisions
 
-- **Offline model.** No sub-500 MB candidate is a peer to Apple's engine
-  (best: Qwen3-0.6B at 3/12 vs Apple's 10/12), and it *follows* prompt injections
-  that Apple resists. Either fund fine-tuning or ship v1 Apple-only.
-- **Download host.** Hugging Face `resolve/<rev>` URLs redirect to a CDN on a
-  different host, which the single-origin policy correctly rejects. Self-host the
-  weights or allowlist the CDN origin.
-- **App Review** and the XPC downloader — unverified; needs a TestFlight build.
+- **Distribution.** v1 targets a **Homebrew tap**, not the Mac App Store. A personal tap
+  needs no Apple Developer account, no notarization and no sandbox, and costs nothing. The
+  App Store and a notarized Developer ID build are both deferred, not rejected.
+- **Offline engine (v2).** Round 2 found an offline model in Apple's quality band, so this
+  is a real choice now rather than a dead end. Options, evidence and the three cheap checks
+  that should come first are in [`V2-ENGINE-DECISION.md`](V2-ENGINE-DECISION.md).
+- **Detector precision.** The §4.7.4 instruction detector catches direct injections (11/11)
+  but **zero** paraphrased ones (0/10), and it fires on ordinary prose such as
+  *"Ignore the previous paragraph; the corrected version follows."* Measured in
+  `Tests/GrammarBarCoreTests/InjectionCoverageTests.swift`; tightening it is an open task.
