@@ -58,9 +58,18 @@ public final class AppleGrammarEngine: GrammarEngine {
                         : Prompts.instructions(for: .apple)
                     // Fresh session per chunk: the task is stateless.
                     let session = LanguageModelSession(model: model, instructions: instructions)
-                    // `GenerationOptions(sampling:)` is deprecated in the macOS 27
-                    // SDK; `samplingMode` is available from macOS 26.0, so no gate.
-                    let options = GenerationOptions(samplingMode: .greedy)
+                    // Use `sampling:` (the macOS 26 spelling), NOT `samplingMode:`.
+                    //
+                    // The SDK 27 interface marks `init(sampling:)` deprecated/renamed in
+                    // favour of `init(samplingMode:)`, and annotates the latter
+                    // `@available(macOS 26.0, *)`. That availability is retrospective: the
+                    // `samplingMode:` declaration itself exists only in the SDK 27 headers.
+                    // Compiling against the macOS 26 SDK has no such initialiser, and fails
+                    // with "incorrect argument label in call (have 'samplingMode:', expected
+                    // 'sampling:')" - which is exactly what broke CI and would equally break
+                    // anyone on Xcode 26, the current stable release. `sampling:` is
+                    // declared in both SDKs, so it compiles for everyone.
+                    let options = GenerationOptions(sampling: .greedy)
                     let stream = session.streamResponse(to: delimiter.wrap(text), options: options)
                     for try await snapshot in stream {
                         continuation.yield(snapshot.content)
