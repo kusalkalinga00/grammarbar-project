@@ -523,6 +523,15 @@ brew audit --cask ./Casks/grammarbar.rb   # needs the release to exist; it fetch
 
 `brew style` passes clean today. `brew audit` cannot fully run until a release exists.
 
+**Homebrew 7 requires `brew trust` for third-party taps.** Verified by tapping this repo:
+`brew info --cask grammarbar` refuses with *"Refusing to load cask … from untrusted tap"* until
+the user runs `brew trust --cask kusalkalinga00/grammarbar/grammarbar`. It is a one-time
+consent per tap, and it must be in the README or every user's first command fails.
+
+Verified working after trusting: `brew info --cask grammarbar` resolves `0.1.0`,
+`Required: macOS >= 26` (confirming the `:tahoe` symbol), the `GrammarBar.app` artifact, and the
+caveats. The only unverified step is the download itself, which needs the GitHub Release.
+
 ### Why not `homebrew/cask`
 
 Two requirements this project does not meet, and neither is about code quality:

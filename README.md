@@ -41,12 +41,20 @@ has never completed end to end, and there is no UI automation.
 
 ```sh
 brew tap kusalkalinga00/grammarbar https://github.com/kusalkalinga00/grammarbar-project
+brew trust --cask kusalkalinga00/grammarbar/grammarbar
 brew install --cask grammarbar
 ```
 
+The `brew trust` line is **required on Homebrew 7+**, not optional — a third-party tap is
+untrusted by default and every command refuses with *"Refusing to load cask … from untrusted
+tap"* until you consent to it.
+
 The cask lives in this repo at [`Casks/grammarbar.rb`](Casks/grammarbar.rb), so there is no
-second repository to keep in sync. Homebrew downloads with `curl`, which does **not** set the
-macOS quarantine flag, so the ad-hoc signed build should launch without a Gatekeeper prompt.
+second repository to keep in sync. Homebrew clones it as `homebrew-grammarbar` even though the
+repo is named `grammarbar-project` — the explicit URL makes that work.
+
+Homebrew downloads with `curl`, which does **not** set the macOS quarantine flag, so the ad-hoc
+signed build should launch without a Gatekeeper prompt.
 
 It is deliberately **not** in `homebrew/cask`: that repo requires a build that passes
 Gatekeeper (i.e. notarized) and clears a notability threshold, neither of which this project
