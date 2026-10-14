@@ -24,6 +24,21 @@ struct PanelView: View {
     private static let panelWidth: CGFloat = 420
     private static let panelHeight: CGFloat = 420
 
+    @Environment(\.dynamicTypeSize) private var typeSize
+
+    /// The panel is a fixed-size popover, so a larger text-size setting has nowhere to grow.
+    /// Growing the height is the only option that neither clips nor overlaps; the editors
+    /// inside scroll, so extra height is absorbed there.
+    private var heightForTypeSize: CGFloat {
+        if typeSize.isAccessibilitySize { return Self.panelHeight + 150 }
+        switch typeSize {
+        case .xSmall, .small, .medium, .large: return Self.panelHeight
+        case .xLarge: return Self.panelHeight + 40
+        case .xxLarge: return Self.panelHeight + 80
+        default: return Self.panelHeight + 115
+        }
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             header
@@ -40,7 +55,7 @@ struct PanelView: View {
                 InputView()
             }
         }
-        .frame(width: Self.panelWidth, height: Self.panelHeight)
+        .frame(width: Self.panelWidth, height: heightForTypeSize)
         .onAppear {
             // Dock-less apps lose keyboard focus without this, which breaks
             // ⌘V/⌘C in the text fields. Verified necessary in plan v2 §4.1.
@@ -72,6 +87,8 @@ struct PanelView: View {
             .disabled(!model.hasContent)
             .keyboardShortcut("k", modifiers: .command)
             .help("Clear input and output (⌘K)")
+            // Without this VoiceOver announces the SF Symbol name, "trash".
+            .accessibilityLabel("Clear input and output")
 
             // A Dock-less app with no menu bar menus has no other quit path —
             // without this the only ways out are pkill or Activity Monitor.
@@ -84,6 +101,7 @@ struct PanelView: View {
             .buttonStyle(.borderless)
             .keyboardShortcut("q", modifiers: .command)
             .help("Quit GrammarBar (⌘Q)")
+            .accessibilityLabel("Quit GrammarBar")
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)

@@ -22,13 +22,17 @@ struct OutputView: View {
                     .foregroundStyle(.secondary)
 
                 if model.state.isRunning {
-                    ProgressView().controlSize(.small)
+                    ProgressView()
+                        .controlSize(.small)
+                        .accessibilityLabel("Correcting")
                 }
 
                 Spacer()
 
                 Button(copied ? "Copied" : "Copy") { copy() }
                     .disabled(model.output.isEmpty)
+                    .accessibilityLabel(copied ? "Copied to clipboard"
+                                               : "Copy corrected text to clipboard")
             }
             .padding(.horizontal, 12)
             .padding(.top, 8)
@@ -65,11 +69,13 @@ struct OutputView: View {
                 .foregroundStyle(.orange)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(.horizontal, 12)
+                .accessibilityLabel("Warning. \(warning)")
         } else if case .done(.unchanged) = model.state {
             Label("No changes needed", systemImage: "checkmark.circle.fill")
                 .font(.caption)
                 .foregroundStyle(.green)
                 .padding(.horizontal, 12)
+                .accessibilityLabel("No changes were needed.")
         } else if case .failed(let message) = model.state {
             Label(message, systemImage: "xmark.octagon.fill")
                 .font(.caption)

@@ -19,6 +19,7 @@ struct InputView: View {
                 .frame(minHeight: 72, maxHeight: 110)
                 .padding(6)
                 .background(.quaternary.opacity(0.25), in: RoundedRectangle(cornerRadius: 6))
+                .accessibilityLabel("Text to correct")
 
             HStack(spacing: 10) {
                 Text("⌘↩ to submit")

@@ -13,9 +13,12 @@ struct UnavailableView: View {
 
     var body: some View {
         VStack(spacing: 12) {
+            // Semantic font, not a fixed point size: `.system(size:)` ignores the user's
+            // text-size setting entirely.
             Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 32))
+                .font(.largeTitle)
                 .foregroundStyle(.orange)
+                .accessibilityHidden(true)
 
             Text("GrammarBar needs Apple Intelligence")
                 .font(.headline)
