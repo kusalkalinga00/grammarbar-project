@@ -5,6 +5,7 @@ import GrammarBarCore
 struct PanelView: View {
     @Environment(EngineRegistry.self) private var registry
     @Environment(CorrectionViewModel.self) private var model
+    @Environment(LaunchAtLogin.self) private var login
 
     // Panel sizing.
     //
@@ -54,6 +55,9 @@ struct PanelView: View {
                 Divider()
                 InputView()
             }
+
+            Divider()
+            footer
         }
         .frame(width: Self.panelWidth, height: heightForTypeSize)
         .onAppear {
@@ -105,6 +109,44 @@ struct PanelView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
+    }
+
+    /// Launch at login (FR6).
+    ///
+    /// It lives in the panel rather than a Settings window because it is the only remaining
+    /// preference and a whole window for one checkbox was the reason the window went away.
+    /// The reading of the state is authoritative - it comes back from `SMAppService` after
+    /// every change - so an ad-hoc signed app that cannot register shows that plainly instead
+    /// of a toggle that silently does nothing.
+    private var footer: some View {
+        HStack(spacing: 8) {
+            Toggle("Launch at login", isOn: Binding(
+                get: { login.state.isOn || login.state == .needsApproval },
+                set: { _ = login.setEnabled($0) }
+            ))
+            .toggleStyle(.checkbox)
+            .font(.caption)
+            .disabled(isLoginItemUnavailable)
+            .accessibilityLabel("Launch GrammarBar at login")
+
+            if let note = login.note {
+                Text(note)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityLabel(note)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+    }
+
+    private var isLoginItemUnavailable: Bool {
+        if case .unavailable = login.state { return true }
+        return false
     }
 
     // MARK: - Engine status

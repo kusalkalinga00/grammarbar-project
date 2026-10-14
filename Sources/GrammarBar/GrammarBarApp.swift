@@ -9,12 +9,14 @@ struct GrammarBarApp: App {
 
     @State private var registry = EngineRegistry()
     @State private var model = CorrectionViewModel()
+    @State private var login = LaunchAtLogin()
 
     var body: some Scene {
         MenuBarExtra {
             PanelView()
                 .environment(registry)
                 .environment(model)
+                .environment(login)
         } label: {
             Image(systemName: "checkmark.bubble")
         }
