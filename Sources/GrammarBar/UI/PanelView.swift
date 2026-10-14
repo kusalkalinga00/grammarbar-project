@@ -5,12 +5,11 @@ import GrammarBarCore
 struct PanelView: View {
     @Environment(EngineRegistry.self) private var registry
     @Environment(CorrectionViewModel.self) private var model
-    @State private var showSettings = false
 
     // Panel sizing.
     //
     // Fixed (non-scrolling) space is roughly:
-    //   header                       ~30   (wordmark + controls + vertical padding)
+    //   header                       ~30   (status badge + controls + vertical padding)
     //   output header + paddings     ~38
     //   input block                  ~128  (padding 24 + editor 72 + row 32)
     //   two dividers                 ~2
@@ -42,10 +41,6 @@ struct PanelView: View {
             }
         }
         .frame(width: Self.panelWidth, height: Self.panelHeight)
-        .sheet(isPresented: $showSettings) {
-            SettingsView()
-                .environment(registry)
-        }
         .onAppear {
             // Dock-less apps lose keyboard focus without this, which breaks
             // ⌘V/⌘C in the text fields. Verified necessary in plan v2 §4.1.
@@ -56,10 +51,7 @@ struct PanelView: View {
 
     private var header: some View {
         HStack(spacing: 8) {
-            // A wordmark, not a picker: v1 offers one engine, so a picker would
-            // only be a way to select an engine that can never become ready.
-            Text("GrammarBar")
-                .font(.subheadline.weight(.semibold))
+            engineBadge
 
             Spacer()
 
@@ -81,14 +73,6 @@ struct PanelView: View {
             .keyboardShortcut("k", modifiers: .command)
             .help("Clear input and output (⌘K)")
 
-            Button {
-                showSettings = true
-            } label: {
-                Image(systemName: "gearshape")
-            }
-            .buttonStyle(.borderless)
-            .help("Settings")
-
             // A Dock-less app with no menu bar menus has no other quit path —
             // without this the only ways out are pkill or Activity Monitor.
             // ⌘Q matches the platform convention.
@@ -103,6 +87,39 @@ struct PanelView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
+    }
+
+    // MARK: - Engine status
+
+    /// The engine's state at a glance, replacing the Settings sheet.
+    ///
+    /// Carries a text label as well as the dot so it does not depend on colour
+    /// alone (NFR6), and keeps the privacy statement as its tooltip: that claim
+    /// used to live in Settings, and for this app it is the whole point, so it
+    /// should not vanish from the UI entirely.
+    private var engineBadge: some View {
+        HStack(spacing: 5) {
+            Circle()
+                .fill(isReady ? Color.green : Color.orange)
+                .frame(width: 7, height: 7)
+
+            Text(isReady ? "On-device" : "Unavailable")
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+        .help(engineDescription)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("Engine status. \(engineDescription)")
+    }
+
+    private var isReady: Bool { registry.currentStatus.isReady }
+
+    private var engineDescription: String {
+        guard isReady else {
+            return registry.unavailableReason ?? "The correction engine is not available."
+        }
+        return "Apple's on-device model. Your text is processed on this Mac and never "
+             + "leaves it - there is no networking code, no analytics and no account."
     }
 
     /// Opens the Apple Intelligence pane in System Settings.

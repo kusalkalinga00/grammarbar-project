@@ -171,10 +171,12 @@ the over-editing failure — check that `TenseGuard` and the retry ladder are in
 - [ ] During a run the button becomes **Cancel**, and cancelling stops the run.
 - [ ] **Copy** puts the corrected text on the clipboard; the button reads "Copied"
       briefly.
-- [ ] The **engine picker** switches engines without a crash.
+- [ ] The header badge reads **On-device** with a green dot, and its tooltip states
+      the privacy claim (there is no Settings window).
 - [ ] **Esc** cancels a running job.
-- [ ] The settings gear opens a sheet showing the engine status, the offline-model
-      section and the privacy statement.
+- [ ] With Apple Intelligence turned off, the panel body becomes the **unavailable
+      notice** naming the specific reason, with a working **Open System Settings**
+      button and no editors to type into.
 - [ ] Timing appears in the header after a run (~350–1000 ms; first run after
       launch is slower — that is the cold model load).
 - [ ] **Clear (trash, ⌘K)** empties both fields, is greyed out when they are
