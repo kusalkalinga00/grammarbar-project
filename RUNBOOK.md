@@ -590,3 +590,63 @@ A personal tap has neither requirement, which is why the cask lives in this repo
 
 The cask's `zap` stanza removes the preferences plist, the Application Support directory and
 the saved-state folder. v1 stores no history, so there is nothing else to clean up.
+
+
+---
+
+## 12. Network audit (NFR1)
+
+The privacy claim is that user text never leaves the machine. That was asserted by reading the
+source; it is now **measured**, three independent ways, on v1.
+
+### Result
+
+| Check | Result |
+|---|---|
+| Sockets held by `GrammarBar.app`, 10 samples over 20 s while idle | **0 / 10** |
+| Sockets held while the engine corrected a 15,188-character document, 23 samples | **0 / 23** |
+| Networking symbols imported by the app binary (`nm -u`) | **0** |
+| CFNetwork / Network.framework linkages (`otool -L`) | **0** |
+| Networking symbols in `GrammarBarCore.framework` (all the text logic) | **0** |
+
+What `GrammarBar.app` actually links: its own `GrammarBar.debug.dylib` and `libSystem.B.dylib`.
+What `GrammarBarCore.framework` links: CoreFoundation, CryptoKit, Foundation,
+**FoundationModels**, NaturalLanguage, libSystem, libobjc and the `libswift*` family — no
+CFNetwork and no `Network.framework`.
+
+For contrast, the project *does* contain networking code — `GrammarDownloaderCore` has three
+files using `URLSession` — and that library is **not linked into the app**. A library
+containing `URLSession` is therefore the control: searching for it finds something, so the zero
+results above are a real absence rather than a broken search.
+
+### Reproducing it
+
+```sh
+APP=~/Developer/personal/GrammarBar/.build-xcode/Build/Products/Debug/GrammarBar.app
+PID=$(pgrep -x GrammarBar)
+lsof -nP -a -p "$PID" -i                      # -a ANDs the selectors; without it lsof
+                                              # lists every process on the system and looks
+                                              # like a failure
+nm -u "$APP/Contents/MacOS/GrammarBar" | grep -cE 'URLSession|CFNetwork|nw_|socket|connect'
+otool -L "$APP/Contents/MacOS/GrammarBar"    # and .../Frameworks/GrammarBarCore.framework/...
+```
+
+To audit the text path itself, run the eval against a long document and sample its sockets
+while it works — that exercises the same engine calls the panel makes:
+
+```sh
+swift run -c release GrammarBarEval --set <cases.jsonl> --label netaudit --engine apple \
+  --mode pipeline --quiet &
+EPID=$(pgrep -f "GrammarBarEval --set")
+while kill -0 "$EPID" 2>/dev/null; do lsof -nP -a -p "$EPID" -i | tail -n +2; sleep 2; done
+```
+
+### What this does NOT cover
+
+The audit is of `GrammarBar.app` and the text path. It says nothing about the machine's own
+services — `rapportd`, `sharingd`, `identityservicesd` and others hold sockets continuously and
+appear in any `lsof` run, which is why the `-a` flag matters.
+
+The sandbox is still not enforced (see the Privacy section of `README.md`), so this is a
+statement about the code, verified at the socket and symbol level, not about a kernel
+restriction.
